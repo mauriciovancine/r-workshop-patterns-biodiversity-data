@@ -1,0 +1,1510 @@
+---
+title: "Analyzing spatial patterns in biodiversity data"
+subtitle: "<br>São Paulo School of Advanced Science (SPSAS)<br>
+Co-designing Biodiversity Assessments"
+author: "[Maurício Vancine](https://mauriciovancine.github.io/)"
+date: "10/30/2024"
+date-format: long
+license: "Licence: [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR)"
+format: 
+  revealjs:
+    theme: [custom.scss]
+    slide-number: c/t
+    show-slide-number: all
+    hash-type: number
+    preview-links: false
+    chalkboard: true
+    logo: "https://espca.ib.unicamp.br/wp-content/uploads/2023/12/cropped-SPTRANS-gravura-parte-2-180x180.png"
+    execute:
+      echo: true
+      eval: true
+      warning: false
+      message: false
+editor: source
+lang: en
+---
+
+## Maurício Vancine 
+
+::: columns
+::: {.column width="35%"}
+<center>
+<br><br>
+![](img/avatar.png)
+</center>
+:::
+
+::: {.column width="65%"}
+- Ecologist and PhD in Ecology
+- Post-Doc in Spatial Ecology (Prof. Mathias - Unicamp)
+- Spatial Ecology
+- Ecological Modeling
+- Ecological and Spatial Data Analysis
+- Amphibian Ecology and Conservation
+- *Open source* (R, QGIS, GNU/Linux)
+:::
+:::
+
+## Content
+
+::: panel-tabset
+## Theorical (1h)
+
+1. Carbon and Biodiversity credits
+1. Biodiversity shortfalls
+1. Spatial data
+1. Species occurrences
+1. Spatial analysis 
+1. Landscape metrics
+1. Application: SN Platform
+
+## Pre-Practical (0.5h)
+
+1. Install R and RStudio
+1. Install packages
+1. Computer test
+
+## Practical (1.5h)
+
+1. R minimal explaining
+1. R for spatial data
+1. Occurrences download
+1. Occurrences cleaning
+1. Spatial analysis
+1. Species Distribution Modeling
+1. Landscape analysis
+:::
+
+## IMPORTANT!!!
+
+**We are in a safe and friendly space**
+
+Feel free to interrupt me and ask questions
+
+<center>
+<img src="img/general_starwars_teamwork.png" style="width:50%"/>
+</center>
+
+::: footer
+[\@allison_horst](https://twitter.com/allison_horst)
+:::
+
+## IMPORTANT!!!
+
+**My English is a work in progress...**
+
+<center>
+<img src="img/english.webp" style="width:55%"/>
+</center>
+
+## Carbon and Biodiversity credits
+
+**Carbon credit**
+
+- Allows private companies to **trade carbon emissions**
+- Measured in **tonnes of carbon dioxide equivalent** (tCO2e)
+
+<center>
+<img src="img/carbon_credits.png" style="width:45%"/>
+</center>
+
+:::footer
+[Mariana Sarmiento and Simon Morgon on Mongabay](https://news.mongabay.com/2023/02/biodiversity-credits-an-opportunity-to-create-a-new-crediting-framework-commentary/)
+:::
+
+## Carbon and Biodiversity credits
+
+**Biodiversity credit**
+
+- Allow private companies to **finance activities** (forest conservation or restoration) for **positive biodiversity gains**
+
+<center>
+<img src="img/biodiversity_credit.png" style="width:45%"/>
+</center>
+
+:::footer
+[life](https://lifeinstituteglobal.org/creditos-life-de-biodiversidade/)
+:::
+
+## Carbon and Biodiversity credits
+
+**Carbon credit vs Biodiversity credit**
+
+<br>
+<center>
+<img src="img/carbon_biodiversity_credit.png" style="width:80%"/>
+</center>
+
+:::footer
+[Jemma Penelope on Linkedin](https://www.linkedin.com/posts/jemmapenelopemisjp_biodiversitycredits-biodiversity-carbonmarkets-activity-7128086521299009537-hX3P?utm_source=share&utm_medium=member_desktop)
+:::
+
+## Biodiversity credit
+
+**What is biodiversity?**
+
+Sustainable Ecology and Economic Development (SEED) 
+
+<center>
+<img src="img/what_biodiversity.png" style="width:65%"/>
+</center>
+
+:::footer
+[McElderry et al. (2024) (preprint)](https://doi.org/10.32942/X2689N)
+:::
+
+## Biodiversity credit
+
+**How to measure the biodiversity?**
+
+<center>
+<img src="img/measuring_biodiversity01.jpg" style="width:70%"/>
+</center>
+
+:::footer
+[Besson et al. (2022)](https://doi.org/10.1111/ele.14123)
+:::
+
+## Biodiversity credit
+
+**How to measure the biodiversity?**
+
+<br>
+<center>
+<img src="img/measuring_biodiversity02.jpg" style="width:100%"/>
+</center>
+
+:::footer
+[Besson et al. (2022)](https://doi.org/10.1111/ele.14123)
+:::
+
+## Biodiversity shortfalls
+
+**Seven biodiversity shortfalls**
+
+::: columns
+::: {.column width="55%"}
+<br>
+<center>
+<img src="img/shortfalls.png" style="width:80%"/>
+</center>
+:::
+
+::: {.column width="45%"}
+<br>
+
+::: {style="font-size: 70%;"}
+- Species taxonomy (Linnean)
+- Species distribution (Wallacean)
+- Species abundance (Prestonian)
+- Species evolutionary patterns (Darwinian)
+- Species abiotic tolerances (Hutchinsonian)
+- Species traits (Raunkiæran) 
+- Species biotic interactions (Eltonian)
+:::
+:::
+:::
+
+:::footer
+[Hortal et al. (2015)](https://doi.org/10.1146/annurev-ecolsys-112414-054400)
+:::
+
+## Biodiversity shortfalls
+
+**Select two biodiversity shortfalls**
+
+::: columns
+::: {.column width="55%"}
+<br>
+<center>
+<img src="img/shortfalls.png" style="width:80%"/>
+</center>
+:::
+
+::: {.column width="45%"}
+<br>
+
+::: {style="font-size: 70%;"}
+- [**Species taxonomy (Linnean)**]{.underline}
+- [**Species distribution (Wallacean)**]{.underline}
+- Species abundance (Prestonian)
+- Species evolutionary patterns (Darwinian)
+- [**Species abiotic tolerances (Hutchinsonian)**]{.underline}
+- Species traits (Raunkiæran) 
+- Species biotic interactions (Eltonian)
+:::
+:::
+:::
+
+:::footer
+[Hortal et al. (2015)](https://doi.org/10.1146/annurev-ecolsys-112414-054400)
+:::
+
+## Spatial data
+
+
+## Species occurrences
+
+
+## Spatial analysis 
+
+
+## Landscape metrics
+
+
+## Application: SN Platform
+
+
+
+## Visão geral
+
+<center>
+<img src="img/sdm_guisan_general.png" style="width:80%"/>
+</center>
+
+:::footer
+[Guisan et al. (2017)](https://www.cambridge.org/br/academic/subjects/life-sciences/ecology-and-conservation/habitat-suitability-and-distribution-models-applications-r)
+:::
+
+## Visão geral
+
+**Protocolo padrão para modelos de distribuição de espécies**
+
+<center>
+<img src="img/sdm_zurell_standard_complete.jpg" style="width:80%"/>
+</center>
+
+:::footer
+[Zurell et al. (2020)](https://onlinelibrary.wiley.com/doi/10.1111/ecog.04960)
+:::
+
+## Visão geral
+
+**Protocolo padrão para modelos de distribuição de espécies**
+
+<center>
+<img src="img/sdm_zurell_standard.png" style="width:100%"/>
+</center>
+
+:::footer
+[Zurell et al. (2020)](https://onlinelibrary.wiley.com/doi/10.1111/ecog.04960)
+:::
+
+# 1. Conceitualização
+
+## Terminologia {.smaller}
+
+**1. Modelos de Distribuição de Espécies (*Species Distribution Models* - SDMs)**
+
+- Distribuição da espécie **sem transferir** para outras condições no espaço ou tempo
+- Distribuição com maior precisão incorporando elementos de dispersão e colonização 
+
+. . . 
+
+**2. Modelos de Nicho Ecológico (*Ecological Niche Models* - ENMs)**
+
+- Estima as preferências ambientais da espécie para **poder transferir** para outras condições no espaço ou tempo
+
+. . . 
+
+**3. Modelos de Adequabilidade de Habitat (*Habitat Suitability Models* - HSMs)**
+
+- Reflete melhor a base dos modelos: quantificar a **relação espécie-ambiente** (habitat)
+- Aplicável a entidades que **não sejam espécies** (e.g. genes ou comunidades)
+- Aplicável a casos em que um **nicho é parcialmente capturado** (área menor que a distribuição total)
+
+:::footer
+[Araújo & Peterson (2012)](https://doi.org/10.1890/11-1930.1), 
+[Peterson & Soberon (2012)](https://doi.org/10.4322/natcon.2012.019), 
+[Guisan et al. (2017)](https://www.cambridge.org/br/academic/subjects/life-sciences/ecology-and-conservation/habitat-suitability-and-distribution-models-applications-r), 
+[Adaptado de Luara Tourinho (2021)](https://youtu.be/l62rqAlV3aE)
+:::
+
+# Em comum: todos são **modelos**. Mas o que são modelos?
+
+## Modelos [científicos]
+
+Idealizações da realidade com o objetivo de entendê-la
+
+<center>
+<img src="img/general_models.png" style="width:80%"/>
+</center>
+
+(...) essentially, all models are wrong, but some are useful. George E. P. Box (1919-2013)
+
+:::footer
+[Silva & Catelli (2019)](http://dx.doi.org/10.1590/1806-9126-RBEF-2019-0029)
+:::
+
+## Objetivo
+
+Predizer a distribuição de espécies (ou entidades) a partir do nicho ecológico
+
+<br>
+<center>
+<img src="img/sdm_niche_distribution_soberon_etal_2017.jpg" style="width:80%"/>
+</center>
+
+:::footer
+[Soberón et al. (2017)](http://dx.doi.org/10.1016/j.rmb.2017.03.011)
+:::
+
+## Entretanto...
+
+Estimar/analisar o **nicho das espécies** sem inferir sua distribuição geográfica
+
+- Sobreposição de nicho
+- Amplitude do nicho
+- Montagem de comunidades
+- Respostas ambientais
+- Diversidade funcional
+- ...
+
+![](img/sdm_niche_variation.png){.absolute width=550 height=400 right=-50 top=200}
+
+:::footer
+[Site pessoal do Raul Costa-Pereira](https://rcosta-pereira.weebly.com/)
+:::
+
+## Entretanto...
+
+Inferir a **distribuição das espécies** sem estimar o nicho ecológico
+
+- Buffers
+- Densidade de Kernel
+- Mínimo Polígono Convexo (MPC)
+- Interpolações (IDW, Spline, Krigagem)
+- Opinião de especialistas (IUCN)
+- ...
+
+![](img/sdm_mpc_interpolacao.png){.absolute width=450 height=450 right=-100 top=200}
+
+:::footer
+[Bahn & McGill (2007)](https://onlinelibrary.wiley.com/doi/10.1111/j.1466-8238.2007.00331.x),
+[Jenkins et al. (2013)](https://doi.org/10.1073/pnas.1302251110),
+[BiodiversityMapping.org](https://biodiversitymapping.org/),
+[IUCN (2021)](https://www.iucnredlist.org/),
+[Warren (2012)](https://linkinghub.elsevier.com/retrieve/pii/S0169534712000754)
+:::
+
+## Nicho ecológico
+
+1. Modelagem de nicho ecológico
+1. Coexistência entre espécies
+1. Metacomunidades
+
+<center>
+<img src="img/sdm_nicho_salles_01.jpg" style="width:100%"/>
+</center>
+
+:::footer
+[McInerny & Etienne (2012)](https://onlinelibrary.wiley.com/doi/abs/10.1111/jbi.12033),
+[Sales et al. (2021)](https://doi.org/10.1016/j.actao.2020.103701)
+:::
+
+## Modelagem de nicho ecológico
+
+Combinações de condições que permitem a uma população sobreviver e crescer (r >= 0) em um determinado lugar
+
+![](img/sdm_r.png){.absolute width=400 height=400 right=600 top=240}
+![](img/sdm_verhulst_grafico.png){.absolute width=500 height=400 right=50 top=250}
+
+:::footer
+[Chase & Leibold (2003)](https://press.uchicago.edu/ucp/books/book/chicago/E/bo3638660.html), 
+[Holt (2009)](https://www.pnas.org/content/106/Supplement_2/19659),
+[Soberón (2010)](https://onlinelibrary.wiley.com/doi/10.1111/j.1600-0587.2009.06074.x),
+[Ovaskainen et al. (2016)](https://oxford.universitypressscholarship.com/view/10.1093/acprof:oso/9780198714866.001.0001/acprof-9780198714866),
+[Gravel et al. (2019)](https://onlinelibrary.wiley.com/doi/abs/10.1111/ecog.04006),
+[Murray & Sandercock (2019)](https://www.wiley.com/en-am/Population+Ecology+in+Practice-p-9780470674147)
+:::
+
+## Modelagem de nicho ecológico {.smaller}
+
+- Podemos associar a taxa de crescimento intrínseca (r) com as condições favoráveis
+- O modelo então estima as condições favoráveis (nicho ecológico) no Espaço Ambiental (E) e prediz a distribuição da espécie Espaço Geográfico (G)
+
+![](img/sdm_nicho_r_ambiental.png){.absolute width=400 height=400 right=600 top=250}
+![](img/sdm_nicho_r_geografico.png){.absolute width=500 height=400 right=50 top=250}
+
+:::footer
+[Hirzel & Le Lay (2008)](https://onlinelibrary.wiley.com/doi/10.1111/j.1365-2664.2008.01524.x),
+[Colwell & Rangel (2009)](http://www.pnas.org/cgi/doi/10.1073/pnas.0901650106),
+[Soberón & Nakamura (2009)](http://www.pnas.org/cgi/doi/10.1073/pnas.0901637106)
+:::
+
+## Espaço geográfico (G)
+
+<br>
+<center>
+<img src="img/sdm_nicho_distribuicao01.png" style="width:70%"/>
+</center>
+
+:::footer
+[Soberón & Peterson (2005)](https://doi.org/10.1016/j.actao.2020.103701),
+[Peterson et al. (2011)](https://www.degruyter.com/document/doi/10.1515/9781400840670/html)
+:::
+
+## Distribuição de espécies
+
+<br>
+<center>
+<img src="img/sdm_nicho_distribuicao02.png" style="width:70%"/>
+</center>
+
+:::footer
+[Soberón & Peterson (2005)](https://doi.org/10.1016/j.actao.2020.103701),
+[Peterson et al. (2011)](https://www.degruyter.com/document/doi/10.1515/9781400840670/html)
+:::
+
+## Condições abióticas (A)
+
+<br>
+<center>
+<img src="img/sdm_nicho_distribuicao03.png" style="width:70%"/>
+</center>
+
+:::footer
+[Grinnell (1917)](https://www.jstor.org/stable/info/10.2307/4072271),
+[Soberón & Peterson (2005)](https://doi.org/10.1016/j.actao.2020.103701),
+[Soberón (2007)](https://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2007.01107.x),
+[Peterson et al. (2011)](https://www.degruyter.com/document/doi/10.1515/9781400840670/html)
+:::
+
+## Condições bióticas (B)
+
+<br>
+<center>
+<img src="img/sdm_nicho_distribuicao04.png" style="width:70%"/>
+</center>
+
+:::footer
+[Elton (1927)](http://www.biodiversitylibrary.org/bibliography/7435),
+[MacArthur & Levins (1967)](https://www.journals.uchicago.edu/doi/abs/10.1086/282505),
+[Soberón & Peterson (2005)](https://doi.org/10.1016/j.actao.2020.103701),
+[Soberón (2007)](https://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2007.01107.x),
+[Peterson et al. (2011)](https://www.degruyter.com/document/doi/10.1515/9781400840670/html)
+:::
+
+## Condições abióticas (A) e bióticas (B)
+
+<br>
+<center>
+<img src="img/sdm_nicho_distribuicao05.png" style="width:70%"/>
+</center>
+
+:::footer
+[Hutchinson (1957)](http://symposium.cshlp.org/cgi/doi/10.1101/SQB.1957.022.01.039),
+[Soberón & Peterson (2005)](https://doi.org/10.1016/j.actao.2020.103701),
+[Soberón (2007)](https://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2007.01107.x),
+[Peterson et al. (2011)](https://www.degruyter.com/document/doi/10.1515/9781400840670/html)
+:::
+
+## Nicho fundamental
+
+Todas as condições ambientais favoráveis
+
+<center>
+<img src="img/sdm_nicho_distribuicao06.png" style="width:70%"/>
+</center>
+
+:::footer
+[Hutchinson (1957)](http://symposium.cshlp.org/cgi/doi/10.1101/SQB.1957.022.01.039),
+[Soberón & Peterson (2005)](https://doi.org/10.1016/j.actao.2020.103701),
+[Soberón (2007)](https://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2007.01107.x),
+[Peterson et al. (2011)](https://www.degruyter.com/document/doi/10.1515/9781400840670/html)
+:::
+
+## Nicho realizado
+
+Condições ambientais favoráveis limitadas pela interação
+
+<center>
+<img src="img/sdm_nicho_distribuicao07.png" style="width:70%"/>
+</center>
+
+:::footer
+[Hutchinson (1957)](http://symposium.cshlp.org/cgi/doi/10.1101/SQB.1957.022.01.039),
+[Soberón & Peterson (2005)](https://doi.org/10.1016/j.actao.2020.103701),
+[Soberón (2007)](https://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2007.01107.x),
+[Peterson et al. (2011)](https://www.degruyter.com/document/doi/10.1515/9781400840670/html)
+:::
+
+## Nicho ecológico
+
+Hipervolume n-dimensional
+
+<center>
+<img src="img/sdm_nicho_distribuicao08.png" style="width:70%"/>
+</center>
+
+:::footer
+[Hutchinson (1957)](http://symposium.cshlp.org/cgi/doi/10.1101/SQB.1957.022.01.039),
+[Soberón & Peterson (2005)](https://doi.org/10.1016/j.actao.2020.103701),
+[Soberón (2007)](https://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2007.01107.x),
+[Peterson et al. (2011)](https://www.degruyter.com/document/doi/10.1515/9781400840670/html),
+[Guisan et al. (2017)](https://www.cambridge.org/br/academic/subjects/life-sciences/ecology-and-conservation/habitat-suitability-and-distribution-models-applications-r)
+:::
+
+## Dualidade Hutchinsoniana
+
+Inferir a distribuição geográfica de uma espécie a partir do nicho ecológico
+
+<center>
+<img src="img/sdm_niche_distribution_soberon_nakamura_2009.jpg" style="width:43%"/>
+</center>
+
+:::footer
+[Colwell & Rangel (2009)](http://www.pnas.org/cgi/doi/10.1073/pnas.0901650106),
+[Soberón & Nakamura (2009)](http://www.pnas.org/cgi/doi/10.1073/pnas.0901637106),
+[Peterson et al. (2011)](https://www.degruyter.com/document/doi/10.1515/9781400840670/html),
+[Soberón et al. (2017)](http://dx.doi.org/10.1016/j.rmb.2017.03.011)
+:::
+
+## Ocorrências no espaço geográfico
+
+<center>
+<img src="img/sdm_dualidade01.png" style="width:100%"/>
+</center>
+
+:::footer
+[Soberón & Nakamura (2009)](http://www.pnas.org/cgi/doi/10.1073/pnas.0901637106)
+:::
+
+## Condições ambientais
+
+<center>
+<img src="img/sdm_dualidade02.png" style="width:100%"/>
+</center>
+
+:::footer
+[Soberón & Nakamura (2009)](http://www.pnas.org/cgi/doi/10.1073/pnas.0901637106)
+:::
+
+## Estimativa do nicho realizado
+
+<center>
+<img src="img/sdm_dualidade03.png" style="width:100%"/>
+</center>
+
+:::footer
+[Soberón & Nakamura (2009)](http://www.pnas.org/cgi/doi/10.1073/pnas.0901637106)
+:::
+
+## Predição geográfica
+
+<center>
+<img src="img/sdm_dualidade04.png" style="width:100%"/>
+</center>
+
+:::footer
+[Soberón & Nakamura (2009)](http://www.pnas.org/cgi/doi/10.1073/pnas.0901637106)
+:::
+
+# Como contornar essa extrapolação?
+
+## Área acessível (movimento) (M)
+
+<br>
+<center>
+<img src="img/sdm_nicho_distribuicao09.png" style="width:70%"/>
+</center>
+
+:::footer
+[Hutchinson (1957)](http://symposium.cshlp.org/cgi/doi/10.1101/SQB.1957.022.01.039),
+[Soberón & Peterson (2005)](https://doi.org/10.1016/j.actao.2020.103701),
+[Soberón (2007)](https://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2007.01107.x),
+[Peterson et al. (2011)](https://www.degruyter.com/document/doi/10.1515/9781400840670/html),
+[Barve et al. (2011)](https://linkinghub.elsevier.com/retrieve/pii/S0304380011000780)
+:::
+
+## Área acessível (movimento) (M)
+
+O limite deve considerar as condições de dispersão históricas das espécies
+
+![](img/sdm_limite01.png){.absolute width=550 height=400 right=500 top=250}
+![](img/sdm_limite03.png){.absolute width=400 height=400 right=30 top=250}
+
+:::footer
+[Barve et al. (2011)](https://linkinghub.elsevier.com/retrieve/pii/S0304380011000780),
+[Owens et al. (2013)](https://www.sciencedirect.com/science/article/pii/S0304380013002159),
+[Machado-Stredel et al. (2021)](https://escholarship.org/uc/item/8hq04438)
+:::
+
+## Populações fonte e ralo (*source-sink*)
+
+<br>
+<center>
+<img src="img/sdm_nicho_distribuicao10.png" style="width:70%"/>
+</center>
+
+:::footer
+[Hutchinson (1957)](http://symposium.cshlp.org/cgi/doi/10.1101/SQB.1957.022.01.039),
+[Soberón & Peterson (2005)](https://doi.org/10.1016/j.actao.2020.103701),
+[Soberón (2007)](https://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2007.01107.x),
+[Peterson et al. (2011)](https://www.degruyter.com/document/doi/10.1515/9781400840670/html),
+[Barve et al. (2011)](https://linkinghub.elsevier.com/retrieve/pii/S0304380011000780)
+:::
+
+## Populações fonte e ralo (*source-sink*)
+
+<br>
+<center>
+<img src="img/sdm_nicho_distribuicao11.png" style="width:70%"/>
+</center>
+
+:::footer
+[Hutchinson (1957)](http://symposium.cshlp.org/cgi/doi/10.1101/SQB.1957.022.01.039),
+[Soberón & Peterson (2005)](https://doi.org/10.1016/j.actao.2020.103701),
+[Soberón (2007)](https://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2007.01107.x),
+[Peterson et al. (2011)](https://www.degruyter.com/document/doi/10.1515/9781400840670/html),
+[Barve et al. (2011)](https://linkinghub.elsevier.com/retrieve/pii/S0304380011000780)
+:::
+
+## Populações fonte e ralo (*source-sink*) {.smaller}
+
+::: columns
+::: {.column width="30%"}
+**Invasão**
+
+- Espécies exóticas
+- Ecossistemas
+- Extinção
+- Hibridização
+
+**Distribuição histórica**
+
+- Paleoclima
+- Refúfios
+- Conexões
+- Dispersão
+- Vicariância
+:::
+
+::: {.column width="70%"}
+<br><br>
+<center>
+<img src="img/sdm_nicho_distribuicao11.png" style="width:100%"/>
+</center>
+:::
+:::
+
+:::footer
+[Hutchinson (1957)](http://symposium.cshlp.org/cgi/doi/10.1101/SQB.1957.022.01.039),
+[Soberón & Peterson (2005)](https://doi.org/10.1016/j.actao.2020.103701),
+[Soberón (2007)](https://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2007.01107.x),
+[Peterson et al. (2011)](https://www.degruyter.com/document/doi/10.1515/9781400840670/html),
+[Barve et al. (2011)](https://linkinghub.elsevier.com/retrieve/pii/S0304380011000780)
+:::
+
+## Populações fonte e ralo (*source-sink*) {.smaller}
+
+::: columns
+::: {.column width="30%"}
+
+**Inibição**
+
+- Competição
+- Predação
+- Parasitismo
+- Amensalismo
+
+**Facilitação**
+
+- Mutualismo
+- Cooperação
+- Comensalismo
+- Inquilinismo
+- Epifitismo
+:::
+
+::: {.column width="70%"}
+<br><br>
+<center>
+<img src="img/sdm_nicho_distribuicao11.png" style="width:100%"/>
+</center>
+:::
+:::
+
+:::footer
+[Hutchinson (1957)](http://symposium.cshlp.org/cgi/doi/10.1101/SQB.1957.022.01.039),
+[Soberón & Peterson (2005)](https://doi.org/10.1016/j.actao.2020.103701),
+[Soberón (2007)](https://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2007.01107.x),
+[Peterson et al. (2011)](https://www.degruyter.com/document/doi/10.1515/9781400840670/html),
+[Barve et al. (2011)](https://linkinghub.elsevier.com/retrieve/pii/S0304380011000780)
+:::
+
+## Estabilidade
+
+Variações das condições abióticas e bióticas em função do tempo e do espaço
+
+<center>
+<img src="img/sdm_bam_mudanca.png" style="width:50%"/>
+</center>
+
+:::footer
+[Lima-Ribeiro & Diniz-Filho (2013)](https://files.cercomp.ufg.br/weby/up/672/o/Paleoecologia_completo.pdf)
+:::
+
+## O que de fato modelamos?
+
+<br>
+<center>
+<img src="img/sdm_nicho_distribuicao12.png" style="width:70%"/>
+</center>
+
+:::footer
+[Soberón & Peterson (2005)](https://doi.org/10.1016/j.actao.2020.103701),
+[Soberón (2007)](https://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2007.01107.x),
+[Peterson et al. (2011)](https://www.degruyter.com/document/doi/10.1515/9781400840670/html)
+:::
+
+## Ruído Eltoniano
+
+Desconsideramos as condições bióticas 
+
+<br>
+<center>
+<img src="img/sdm_biotico02.jpg" style="width:90%"/>
+</center>
+
+:::footer
+[Colwell & Rangel (2009)](http://www.pnas.org/cgi/doi/10.1073/pnas.0901650106),
+[Soberón & Nakamura (2009)](http://www.pnas.org/cgi/doi/10.1073/pnas.0901637106),
+[Wisz et al. (2013)](https://doi.org/10.1111/j.1469-185X.2012.00235.x)
+[Dormann et al. (2018)](https://onlinelibrary.wiley.com/doi/10.1111/geb.12759)
+:::
+
+## Entretanto...
+
+Esquilo: *Sciurus aestuans* (catinguelê)  
+Palmeira: *Syagrus romanzoffiana* (jerivá)
+
+<center>
+<img src="img/sdm_recurso.png" style="width:80%"/>
+</center>
+
+:::footer
+[Preuss & Padial (2021)](https://doi.org/10.3897/neotropical.16.e64892)
+:::
+
+## Pressupostos {.smaller}
+
+<br>
+
+- **Estabilidade do nicho ecológico**: as espécies mantêm o mesmo nicho ecológico ao
+longo do tempo, ou, pelo menos, entre os períodos utilizados na modelagem
+
+. . . 
+
+- **Equilíbio espécie-clima**: distribuição de uma espécie é considerada em equilíbrio com o clima
+quando ela está presente em todas as áreas climaticamente adequadas à sua
+ocorrência e não ocorre nas regiões inadequadas
+
+. . . 
+
+- **Controle taxonômico**: certeza em relação à taxonomia da espécie para as ocorrências (discutível)
+
+. . . 
+
+- **"Ruído Eltoniano"**: as interações bióticas não afetam a distribuição da espécie na macroescala
+
+## Temas {.smaller}
+
+::: columns
+::: {.column width="50%"}
+1. Distribuição de espécies
+1. Padrões de diversidade
+1. Mudanças climáticas (passado e futuro)
+1. Invasão biológicas
+1. Transmissão de doenças
+1. Interações entre espécies
+1. Processos de extinção
+1. Conservação-evolução de nicho
+1. Estabelecer refúgios climáticos
+1. Estabelecimento e eficiência de áreas protegidas
+:::
+
+::: {.column width="50%"}
+<center>
+<img src="img/sdm_america_sul_grupos.png" style="width:100%"/>
+</center>
+<center>
+<img src="img/sdm_america_sul_temas.png" style="width:100%"/>
+</center>
+:::
+:::
+
+:::footer
+[Urbina-Cardona et al. (2019)](http://journals.sagepub.com/doi/10.1177/1940082919854058)
+:::
+
+## Visão geral
+
+<center>
+<img src="img/sdm_guisan_general.png" style="width:80%"/>
+</center>
+
+:::footer
+[Guisan et al. (2017)](https://www.cambridge.org/br/academic/subjects/life-sciences/ecology-and-conservation/habitat-suitability-and-distribution-models-applications-r)
+:::
+
+## Visão geral
+
+**Protocolo padrão para modelos de distribuição de espécies**
+
+<center>
+<img src="img/sdm_zurell_standard.png" style="width:100%"/>
+</center>
+
+:::footer
+[Zurell et al. (2020)](https://onlinelibrary.wiley.com/doi/10.1111/ecog.04960)
+:::
+
+# 2. Preparação dos dados
+
+## Dados de entrada
+
+<br>
+<center>
+<img src="img/sdm_dados.png" style="width:70%"/>
+</center>
+
+## Ocorrências
+
+**Formato**
+
+<center>
+<img src="img/sdm_ocorrencias_formato.png" style="width:75%"/>
+</center>
+
+## Ocorrências {.smaller}
+
+**Fontes**
+
+::: columns
+::: {.column width="60%"}
+- Coletas em campo (amostragens em campo)
+- Literatura (artigos, data papers, ...)
+- Ciência cidadã (e-Bird, iNaturalist, ...)
+- Coleções científicas e museus (Museu Nacional, ...)
+- Banco de dados (GBIF, SpeciesLink, ...)
+
+<center>
+<img src="img/incendio_ib.jpg" style="width:60%"/>
+</center>
+:::
+
+::: {.column width="40%"}
+<center>
+<img src="img/incendio_butantan.webp" style="width:90%"/>
+</center>
+<center>
+<img src="img/sdm_occ_fogomuseu.webp" style="width:90%"/>
+</center>
+:::
+:::
+
+:::footer
+[Incêndio no Butantan (RJ) [15/05/2010]](https://veja.abril.com.br/tecnologia/incendio-no-instituto-butantan-e-tragedia-cientifica/),
+[Incêndio no Museu Nacional (RJ) [02/09/2018]](https://g1.globo.com/pop-arte/noticia/2018/09/03/principais-museus-do-mundo-utilizam-patrocinio-privado-para-manter-estrutura-e-expandir-acervo-veja-lista.ghtml),
+[Incêndio na Unesp em Rio Claro (SP) [31/08/2022] ](https://www1.folha.uol.com.br/cotidiano/2022/09/incendio-na-unesp-em-rio-claro-sp-destruiu-amostra-de-sapo-ameacado-de-extincao.shtml)
+:::
+
+## Ocorrências {.smaller}
+
+**Bancos de dados**
+
+- [Global Biodiversity Information Facility (GBIF)](https://www.gbif.org/)
+- [iNaturalist](https://www.inaturalist.org/)
+- [VertNet](http://vertnet.org/)
+- [eBird](https://ebird.org/home)
+- [iDigBio](https://www.idigbio.org/)
+- [Ocean Biogeographic Information System (OBIS)](https://obis.org/)
+- [Botanical Information and Ecology Network (BIEN)](https://bien.nceas.ucsb.edu/bien/)
+- [speciesLink](https://specieslink.net/)
+- [SIBBr](https://www.sibbr.gov.br/?lang=pt_BR)
+
+![](img/sdm_occ_fontes.png){.absolute width=450 height=650 right=-50 top=50}
+
+:::footer
+[Maitner et al. (2017)](https://doi.org/10.1111/2041-210X.12861)
+:::
+
+## Ocorrências {.smaller}
+
+**Pacotes no R**
+
+- [spocc](https://docs.ropensci.org/spocc/)
+- [rgbif](https://docs.ropensci.org/rgbif/)
+- [rvertnet](https://docs.ropensci.org/rvertnet/)
+- [rebird](https://docs.ropensci.org/rebird/)
+- [auk](https://cornelllabofornithology.github.io/auk/)
+- [BIEN](https://bien.nceas.ucsb.edu/bien/tools/rbien/)
+- [taxize](https://docs.ropensci.org/taxize/)
+- [CoordinateCleaner](https://docs.ropensci.org/CoordinateCleaner/)
+- [sampbias](https://github.com/azizka/sampbias)
+- [spThin](https://github.com/mlammens/spThin)
+- [occCite](https://hannahlowens.github.io/occCite/)
+
+![](img/sdm_occ_pkg.png){.absolute width=500 height=550 right=-50 top=100}
+
+:::footer
+[Aiello-Lammens et al. (2015)](https://doi.org/10.1111/ecog.01132),
+[Maitner et al. (2017)](https://doi.org/10.1111/2041-210X.12861),
+[Zizka et al. (2019)](https://doi.org/10.1111/2041-210X.13152),
+[Zizka et al. (2020)](https://doi.org/10.1111/ecog.05102),
+[Owens et al. (2021)](https://doi.org/10.1111/ecog.05618)
+:::
+
+## Ocorrências {.smaller}
+
+**Viés de amostragem - Brasil**
+
+- 1.144.629 (total) e 882.468 (válidos) ocorrências para 4345 espécies
+- Grupos: vertebrados , artropodes e angiospermas
+- Todos as ocorrências < 1km de rotas de acesso (estradas e rios)
+
+![](img/sdm_occ_vies_brasil01.jpg){.absolute width=400 height=400 right=-120 top=280}
+![](img/sdm_occ_vies_brasil02.jpg){.absolute width=750 height=400 right=300 top=280}
+
+:::footer
+[Oliveira et al. (2016)](https://doi.org/10.1111/ddi.12489)
+:::
+
+## Ocorrências {.smaller}
+
+**Viés de amostragem - Mundo**
+
+- 742 milhões de ocorrências de 374.900 espécies
+- Representando 6,74% do globo amostrado
+
+<center>
+<img src="img/sdm_occ_vies_mundo02.jpg" style="width:70%"/>
+</center>
+
+:::footer
+[Hughes et al. (2021)](https://doi.org/10.1111/ecog.05926)
+:::
+
+## Variáveis ambientais
+
+**Raster - contínuos ou categóricos**
+
+![](img/geo_raster.png){.absolute width=540 height=500 right=500 top=150}
+![](img/geo_raster_cont_cat.png){.absolute width=600 height=350 right=-150 top=200}
+
+:::footer
+[National Ecological Observatory Network (NEON)](https://www.neonscience.org/resources/learning-hub/tutorials/dc-raster-data-r),
+[Lovelace et al. (2020)](https://geocompr.robinlovelace.net/)
+:::
+
+## Variáveis ambientais {.smaller}
+
+**Bases de dados**
+
+- [WorldClim](https://www.worldclim.org/)
+- [CHELSA](https://chelsa-climate.org/)
+- [ENVIREM](https://envirem.github.io/)
+- [PaleoClim](http://www.paleoclim.org/)
+- [ecoClimate](https://www.ecoclimate.org/)
+- [EarthEnv](https://www.earthenv.org/)
+- [Land-Use Harmonization (LUH2)](https://luh.umd.edu/)
+- [Global Human Footprint](https://wcshumanfootprint.org/)
+- [SoilGrids](https://soilgrids.org/)
+- [MARSPEC](http://www.marspec.org)
+- [Bio-ORACLE](https://www.bio-oracle.org/)
+
+![](img/sdm_var_wc.png){.absolute width=600 height=100 right=-150 top=100}
+![](img/sdm_var_chelsa.gif){.absolute width=600 height=180 right=-150 top=240}
+![](img/sdm_var_soilgrids.png){.absolute width=600 height=200 right=-150 top=450}
+
+## Variáveis ambientais 
+
+**Interpolação**
+
+<center>
+<img src="img/sdm_var_interpolacao.png" style="width:65%"/>
+</center>
+
+:::footer
+[Biodiversity and Climate Change Virtual Laboratory (BCCVL)](https://support.bccvl.org.au/support/home),
+[National Ecological Observatory Network (NEON)](https://www.neonscience.org/resources/learning-hub/tutorials/spatial-interpolation-basics),
+[Fick & Hijmans (2017)](https://onlinelibrary.wiley.com/doi/10.1002/joc.5086)
+:::
+
+## Variáveis ambientais {.smaller}
+
+::: columns
+::: {.column width="80%"}
+| Variável | Tipo         | Descrição                        |
+| -------- | ------------ | -------------------------------- |
+| BIO01    | Temperatura  | Temp. média anual                |
+| BIO02    | Temperatura  | Variação diurna média da temp.   |
+| BIO03    | Temperatura  | Isotermalidade                   |
+| BIO04    | Temperatura  | Sazonalidade da temp.            |
+| BIO05    | Temperatura  | Temp. máx. do mês mais quente    |
+| BIO06    | Temperatura  | Temp. mín. do mês mais frio      |
+| BIO07    | Temperatura  | Amplitude térmica anual          |
+| BIO08    | Temperatura  | Temp. média do trim. mais úmido  |
+| BIO09    | Temperatura  | Temp. média do trim. mais seco   |
+| BIO10    | Temperatura  | Temp. média do trim. mais quente |
+| BIO11    | Temperatura  | Temp. média do trim. mais frio   |
+:::
+
+::: {.column width="20%"}
+
+**Bioclimáticas**
+
+- Temp. = Temperatura
+- Prec. = Precipitação
+- trim. = Trimestre
+
+:::
+:::
+
+:::footer
+[O’Donnell & Ignizio (2012)](https://pubs.usgs.gov/ds/691/ds691.pdf)
+:::
+
+## Variáveis ambientais {.smaller}
+
+::: columns
+::: {.column width="80%"}
+| Variável | Tipo         | Descrição                   |
+| -------- | ------------ | --------------------------- |
+| BIO12    | Precipitação | Prec. anual                 |
+| BIO13    | Precipitação | Prec. do mês mais chuvoso   |
+| BIO14    | Precipitação | Prec. do mês mais seco      |
+| BIO15    | Precipitação | Sazonalidade da prec.       |
+| BIO16    | Precipitação | Prec. do trim. mais chuvoso |
+| BIO17    | Precipitação | Prec. do trim. mais seco    |
+| BIO18    | Precipitação | Prec. do trim. mais quente  |
+| BIO19    | Precipitação | Prec. do trim. mais frio    |
+:::
+
+::: {.column width="20%"}
+
+**Bioclimáticas**
+
+- Temp. = Temperatura
+- Prec. = Precipitação
+- trim. = Trimestre
+:::
+:::
+
+:::footer
+[O’Donnell & Ignizio (2012)](https://pubs.usgs.gov/ds/691/ds691.pdf)
+:::
+
+## Variáveis ambientais {.smaller}
+
+**Princípio da Parcimônia**
+
+- William of Ockham's (1285–1348)
+- "É fútil fazer com mais o que pode ser feito com menos"
+
+![](img/sdm_var_ockham_razor.jpg){.absolute width=300 height=400 right=50 top=240}
+![](img/sdm_var_parcimonia.jpg){.absolute width=450 height=400 right=500 top=250}
+
+:::footer
+[Coelho et al. (2018)](https://doi.org/10.1111/ecog.04228),
+[What does Occam’s razor mean? (2019)](https://englishtalkzone.com/what-does-occams-razor-mean/)
+:::
+
+## Variáveis ambientais {.smaller}
+
+**Colinearidade - Correlação**
+
+- Mede o grau de relação (positiva ou negativa) entre duas variáveis
+- r > |0.7|: indica alta correlação
+
+<center>
+<img src="img/sdm_var_correlacao01.webp" style="width:60%"/>
+<img src="img/sdm_var_correlacao02.webp" style="width:60%"/>
+</center>
+
+:::footer
+[Zuur et al. (2010)](https://onlinelibrary.wiley.com/doi/10.1111/j.2041-210X.2009.00001.x),
+[Dormann et al. (2012)](https://doi.org/10.1111/j.1600-0587.2012.07348.x),
+[Naimi et al. (2014)](https://doi.org/10.1111/j.1600-0587.2013.00205.x),
+[Feng et al. 2019](http://www.nature.com/articles/s41559-019-0972-5),
+[Coeficientes de correlação](https://operdata.com.br/blog/coeficientes-de-correlacao/)
+:::
+
+## Variáveis ambientais {.smaller}
+
+**Colinearidade - Fator de Inflação de Variância (VIF)**
+
+- Medida da quantidade de multicolinearidade em um conjunto de múltiplas variáveis
+- VIF = 1: não há multicolinearidade entre as variáveis
+- VIF > 2 ou VIF > 5 ou VIF > 10: indica alta multicolinearidade (depende do autor)
+- Na figura: a) r = 0.8946 e VIF = 5.007 e b) r = 0.7697 e VIF = 2.453
+
+<center>
+<img src="img/sdm_var_vif.jpg" style="width:60%"/>
+</center>
+
+:::footer
+[Zuur et al. (2010)](https://onlinelibrary.wiley.com/doi/10.1111/j.2041-210X.2009.00001.x),
+[Dormann et al. (2012)](https://doi.org/10.1111/j.1600-0587.2012.07348.x),
+[Naimi et al. (2014)](https://doi.org/10.1111/j.1600-0587.2013.00205.x),
+[Feng et al. 2019](http://www.nature.com/articles/s41559-019-0972-5),
+[Coeficientes de correlação](https://operdata.com.br/blog/coeficientes-de-correlacao/)
+:::
+
+## Visão geral
+
+<center>
+<img src="img/sdm_guisan_general.png" style="width:80%"/>
+</center>
+
+:::footer
+[Guisan et al. (2017)](https://www.cambridge.org/br/academic/subjects/life-sciences/ecology-and-conservation/habitat-suitability-and-distribution-models-applications-r)
+:::
+
+## Visão geral
+
+**Protocolo padrão para modelos de distribuição de espécies**
+
+<center>
+<img src="img/sdm_zurell_standard.png" style="width:100%"/>
+</center>
+
+:::footer
+[Zurell et al. (2020)](https://onlinelibrary.wiley.com/doi/10.1111/ecog.04960)
+:::
+
+## Métodos ou algoritmos
+
+Métodos modelam diferentes áreas do Diagrama BAM
+
+![](img/sdm_geral_ajuste.png){.absolute width=650 height=500 right=450 top=150}
+![](img/sdm_metodos_bam.jpg){.absolute width=500 height=350 right=-100 top=200}
+
+:::footer
+[Sillero (2011)](https://doi.org/10.1016/j.ecolmodel.2011.01.018),
+[Brown & Yoder (2015)](https://doi.org/10.1002/ece3.1418)
+:::
+
+## Métodos ou algoritmos
+
+Depende dos dados de presença e ausência da espécie
+
+<br>
+<center>
+<img src="img/sdm_tipos_metodos_ausencia.png" style="width:100%"/>
+</center>
+
+:::footer
+[Modificado com autorização de Esser (2021)](https://luizfesser.wordpress.com/2021/06/08/are-pseudoabsences-and-background-the-same-thing/)
+:::
+
+## Ausências em Ecologia {.smaller}
+
+- **Zeros falsos**: experiência do observador (a – b) ou desenho experimental (c – h)
+- **Zeros verdadeiros**: sistema ecológico estudado - *zeros estruturais* (i – k) ou variabilidade da amostragem - *zeros aleatórios* (l)
+
+<center>
+<img src="img/sdm_metodos_ausencia.jpg" style="width:60%"/>
+</center>
+
+:::footer
+[Blasco‐Moreno et al. (2019)](https://doi.org/10.1111/2041-210X.13185)
+:::
+
+## Métodos ou algoritmos
+
+Depende dos dados de presença e ausência da espécie
+
+<br>
+<center>
+<img src="img/sdm_tipos_metodos_pseudoausencia.png" style="width:100%"/>
+</center>
+
+:::footer
+[Modificado com autorização de Esser (2021)](https://luizfesser.wordpress.com/2021/06/08/are-pseudoabsences-and-background-the-same-thing/)
+:::
+
+## Somente presença
+
+**Bioclim (*Envelope score*)**
+
+Envelope climático com escores
+
+![](img/sdm_metodos_bioclim02.png){.absolute width=300 height=450 right=600 top=230}
+![](img/sdm_metodos_bioclim01.png){.absolute width=600 height=450 right=-100 top=200}
+
+:::footer
+[Nix (1986)](https://www.environment.gov.au/science/abrs/publications/flora-fauna/07),
+[Booth et al. (2014)](https://onlinelibrary.wiley.com/doi/10.1111/ddi.12144)
+:::
+
+## Somente presença
+
+**Domain (Distântica de Gower)**
+
+Distância ponto a ponto
+
+![](img/sdm_metodos_bioclim02.png){.absolute width=300 height=450 right=600 top=230}
+![](img/sdm_metodos_gower02.png){.absolute width=300 height=450 right=150 top=220}
+
+:::footer
+[Carpenter et al. (1993)](http://link.springer.com/10.1007/BF00051966)
+:::
+
+## Somente presença
+
+**Mahalanobis (Distância de Mahalanobis)**
+
+Envelope elíptico reflete melhor a tendência central da teoria do nicho
+
+![](img/sdm_metodos_mahalanobis01.png){.absolute width=370 height=370 right=600 top=300}
+![](img/sdm_metodos_mahalanobis02.png){.absolute width=380 height=380 right=150 top=300}
+
+:::footer
+[Farber & Kadmon (2003)](https://linkinghub.elsevier.com/retrieve/pii/S0304380002003277),
+[Jiménez et al. (2019)](https://www.sciencedirect.com/science/article/pii/S0304380019300407)
+:::
+
+## Presença e pseudopresença {.smaller}
+
+**GLM (Modelos Lineares Generalizados - *Generalized Linear Models*)**
+
+- Distribuição de erros binomial
+
+<center>
+<img src="img/sdm_metodos_glm.png" style="width:60%"/>
+</center>
+
+:::footer
+[Guisan et al. (2002)](https://linkinghub.elsevier.com/retrieve/pii/S0304380002002041)
+:::
+
+## Presença e pseudopresença {.smaller}
+
+**GAM (Modelos Generalizados Aditivos - *Generalized Additive Model*)**
+
+- Distribuição de erros binomial com funções de suavização 
+
+<center>
+<img src="img/sdm_metodos_gam.png" style="width:60%"/>
+</center>
+
+:::footer
+[Guisan et al. (2002)](https://linkinghub.elsevier.com/retrieve/pii/S0304380002002041)
+:::
+
+## Presença e pseudopresença {.smaller}
+
+**Random Forest**
+
+- Cria diversas árvores de decisão ('floresta') por reamostragem (*bootstrap*)
+- Combina os resultados de cada árvore em uma última classificação (categórico) ou regressão (contínuo)
+
+![](img/sdm_metodos_rf01.png){.absolute width=650 height=370 right=400 top=300}
+![](img/sdm_metodos_rf02.jpg){.absolute width=380 height=380 right=0 top=300}
+
+:::footer
+[Breiman (2001)](http://link.springer.com/10.1023/A:1010933404324),
+[Liaw & Wiener (2002)](https://cogns.northwestern.edu/cbmg/LiawAndWiener2002.pdf),
+[Prasad et al. (2006)](https://link.springer.com/article/10.1007%2Fs10021-005-0054-1),
+[Cutler et al. (2007)](https://doi.org/10.1890/07-0539.1),
+[Sheykhmousa et al. (2020)](https://doi.org/10.1109/JSTARS.2020.3026724),
+[BCCVL](https://support.bccvl.org.au/support/home)
+:::
+
+## Presença e pseudopresença {.smaller}
+
+**SVM (*Support Vector Machine*)**
+
+- Cria hiperplanos através de vetores de suporte
+- Faz a classificação (categórico) ou regressão (contínuo) para separar os dados em duas ou mais partes
+
+<center>
+<img src="img/sdm_metodos_svm.png" style="width:80%"/>
+</center>
+
+:::footer
+[Tax & Duin (2004)](https://link.springer.com/article/10.1023/B:MACH.0000008084.60811.49),
+[Guo et al. (2005)](https://doi.org/10.1016/j.ecolmodel.2004.07.012),
+[Drake et al. (2006)](https://doi.org/10.1111/j.1365-2664.2006.01141.x),
+[Dou et al. (2019)](https://doi.org/10.3390/rs11060638)
+:::
+
+## Presença e background {.smaller}
+
+**MaxEnt (Máxima Entropia)**
+
+- Compreender as características gerais de um sistema de informação parcial e incompleto
+- Aproxima o formato da distribuição dos valores do background aos valores das presenças, usando diferentes curvas (features) para achar os valores de adequabilidade
+
+![](img/sdm_metodos_maxent.png){.absolute width=650 height=370 right=400 top=300}
+![](img/sdm_metodos_maxent_features.png){.absolute width=550 height=380 right=-150 top=300}
+
+:::footer
+[Phillips et al. (2006)](https://linkinghub.elsevier.com/retrieve/pii/S030438000500267X),
+[Phillips & Dudík (2008)](https://onlinelibrary.wiley.com/doi/10.1111/j.0906-7590.2008.5203.x),
+[Elith et al. (2011)](https://onlinelibrary.wiley.com/doi/10.1111/j.1472-4642.2010.00725.x)
+[Phillips et al. (2017)](https://onlinelibrary.wiley.com/doi/10.1111/ecog.03049),
+[BCCVL](https://support.bccvl.org.au/support/home),
+[SDM com RS NASA](https://appliedsciences.nasa.gov/join-mission/training/english/arset-species-distribution-modeling-remote-sensing)
+:::
+
+## Outros métodos ou algoritmos {.smaller}
+
+**Presença-pseudoausência**
+
+- Classification and regression trees (CART)
+- Multivariate adaptive regression spline (MARS)
+- Mixture discriminant analysis (MAD)
+- Artificial neural networks (ANN)
+- Boosted Regression Trees (BRT)
+- Bayesian Gaussian Process (GAU)
+
+**Presença-background**
+
+- Ecological Niche Factor Analysis (ENFA)
+- Genetic Algorithm for Rule-set Production (GARP)
+- Maxlike (MLK)
+
+![](img/sdm_metodos_outros.png){.absolute width=600 height=350 right=-150 top=200}
+
+:::footer
+[Fletcher & Fortin (2018)](https://www.springer.com/gp/book/9783030019884)
+:::
+
+## Métodos ou algoritmos {.smaller}
+
+**Tunando hiperparâmetros (*Hyperparameter tuning*)**
+
+<center>
+<img src="img/tuning.png" style="width:60%"/>
+<img src="img/reg.webp" style="width:40%"/>
+</center>
+
+:::footer
+[Oracle Accelerated Data Science SDK (2022)](https://docs.oracle.com/en-us/iaas/tools/ads-sdk/latest/user_guide/automl/overview.html),
+[“Lasso & Ridge Regression” in 200 Words (2020)](https://thaddeus-segura.com/lasso-ridge/)
+:::
+
+## Métodos ou algoritmos {.smaller}
+
+**Tunando hiperparâmetros (*Hyperparameter tuning*)**
+
+- [ENMeval](https://cran.r-project.org/web/packages/ENMeval/)
+- [flexsdm](https://sjevelazco.github.io/flexsdm/index.html)
+- [SDMtune](https://cran.r-project.org/web/packages/SDMtune/)
+
+![](img/flexsdm.jpg){.absolute width=400 height=500 right=400 top=150}
+![](img/flexsdm_ex.jpg){.absolute width=400 height=500 right=-50 top=150}
+
+:::footer
+[Velazco et al. (2022)](https://doi.org/10.1111/2041-210X.13874)
+:::
+
+## Métodos ou algoritmos {.smaller}
+
+**Pacotes no R**
+
+- [dismo](https://cran.r-project.org/web/packages/dismo/)
+- [biomod2](https://cran.r-project.org/web/packages/biomod2/)
+- [sdm](https://cran.r-project.org/web/packages/sdm/)
+- [ENMTML](https://github.com/andrefaa/ENMTML)
+- [modelR](https://model-r.github.io/modleR/)
+- [ENMeval](https://cran.r-project.org/web/packages/ENMeval/)
+- [flexsdm](https://sjevelazco.github.io/flexsdm/index.html)
+- [SDMtune](https://cran.r-project.org/web/packages/SDMtune/)
+- [wallace](https://cran.r-project.org/web/packages/wallace/)
+- [ssdm](https://cran.r-project.org/web/packages/ssdm/)
+- [ShinyBIOMOD](https://gitlab.com/IanOndo/shinybiomod)
+
+![](img/sdm_sdm_pkg.png){.absolute width=420 height=550 right=100 top=120}
+
+:::footer
+[Lista de pacotes no R](https://github.com/helixcn/sdm_r_packages)
+:::
+
+## Visão geral
+
+<center>
+<img src="img/sdm_guisan_general.png" style="width:80%"/>
+</center>
+
+:::footer
+[Guisan et al. (2017)](https://www.cambridge.org/br/academic/subjects/life-sciences/ecology-and-conservation/habitat-suitability-and-distribution-models-applications-r)
+:::
+
+## Visão geral
+
+**Protocolo padrão para modelos de distribuição de espécies**
+
+<center>
+<img src="img/sdm_zurell_standard.png" style="width:100%"/>
+</center>
+
+:::footer
+[Zurell et al. (2020)](https://onlinelibrary.wiley.com/doi/10.1111/ecog.04960)
+:::
+
+# Material
+
+## Articles {.smaller}
+
+- [Giannini, T. C. et al. (2012). Desafios atuais da modelagem preditiva de distribuição de espécies. Rodriguésia, 63(3), 733–749.](https://doi.org/10.1590/S2175-78602012000300017)
+
+- [Araújo, M. B. et al. (2019). Standards for distribution models in biodiversity assessments. Science Advances, 5(1), eaat4858.](https://doi.org/10.1126/sciadv.aat4858)
+
+- [Zurell, D. et al. (2020). A standard protocol for reporting species distribution models. Ecography, 43(9), 1261–1277.](https://doi.org/10.1111/ecog.04960)
+
+- [Sillero, N., & Barbosa, A. M. (2021). Common mistakes in ecological niche models. International Journal of Geographical Information Science, 35(2), 213–226.](https://doi.org/10.1080/13658816.2020.1798968)
+
+- [Sillero, N. et al. (2021). Want to model a species niche? A step-by-step guideline on correlative ecological niche modelling. Ecological Modelling, 456, 109671.](https://doi.org/10.1016/j.ecolmodel.2021.109671)
+
+## Books {.smaller}
+
+- [Franklin, J., & Miller, J. A. (2009). Mapping species distributions: Spatial inference and prediction. Cambridge University Press.](https://doi.org/10.1017/CBO9780511810602)
+
+- [Peterson, A. T. (Org.). (2011). Ecological niches and geographic distributions. Princeton University Press.](https://press.princeton.edu/books/paperback/9780691136882/ecological-niches-and-geographic-distributions-mpb-49)
+
+- [Peterson, A. T. (2014). Mapping disease transmission risk: Enriching models using biogeography and ecology. Johns Hopkins University Press.](https://jhupbooks.press.jhu.edu/title/mapping-disease-transmission-risk)
+
+- [Guisan, A., Thuiller, W., & Zimmermann, N. E. (2017). Habitat Suitability and Distribution Models: With Applications in R. Cambridge University Press.](https://doi.org/10.1017/9781139028271)
+
+- [Fletcher, R., & Fortin, M.-J. (2018). Spatial Ecology and Conservation Modeling: Applications with R. Springer International Publishing.](https://doi.org/10.1007/978-3-030-01989-1)
+
+## Muito obrigado!
+
+::: columns
+::: {.column width="50%"}
+Acknowledgements:
+
+- Mathias Pires
+- Miltinho
+- Flavia Pinto
+- Thadeu Sobral-Souza
+- Matheus Lima-Ribeiro
+- João Giovanelli
+
+- [Fapesp]()
+
+![](img/fapesp.png){.absolute width=280 height=90 right=700 top=570}
+
+:::
+
+::: {.column width="50%"}
+Contact:
+
+<center>
+
+[mauricio.vancine@gmail.com](mailto:mauricio.vancine@gmail.com)
+[mauriciovancine.github.io](https://mauriciovancine.github.io)
+
+<img src="img/gif_frogs.gif" style="width:80%"/>
+</center>
+
+:::
+:::
+
+:::footer
+Slides por [Maurício Vancine](https://mauriciovancine.github.io/), feitos com [Quarto](https://quarto.org/). Código disponível no [GitHub](https://github.com/mauriciovancine/workshop-intro-r/blob/master/01_slides/slides.qmd).
+:::
