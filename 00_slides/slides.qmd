@@ -53,34 +53,33 @@ lang: en
 1. Biodiversity concepts
 1. Species occurrences
 1. Spatial analysis 
-1. Landscape ecology
-1. Application: SN Platform
+1. Application: Seleção Natural Platform
 
 ## Pre-Practical (0.5h)
 
 1. Install R and RStudio
 1. Install packages
-1. Computer tests
+1. Computer testing
 1. R minimal explaining (maybe)
 
 ## Practical (1.5h)
 
 1. R minimal explaining
-1. R for spatial data
 1. Occurrences download
 1. Occurrences cleaning
 1. Spatial analysis
-1. Landscape metrics
 :::
 
 ## Objectives
 
-1. How **spatial data and analysis** can contribute to **knowledge of biodiversity**
-1. Basics of tools for **downloading and cleaning** occurrence data
+::: {.incremental}
+1. Contribution of **spatial data and analysis** to **biodiversity knowledge**
+1. Basics of tools for **downloading and cleaning** species occurrence data
 1. Basics of tools for **spatial analysis**: 
-    - summarizing data to spatial units (grids, hexagons, convex hull)
+    - spatial units (grids, hexagons, convex hull)
     - point density (kernel maps)
     - species distribution modeling (very basic)
+:::
 
 ## IMPORTANT!!!
 
@@ -104,7 +103,7 @@ Feel free to interrupt me and ask questions
 <img src="img/english.webp" style="width:55%"/>
 </center>
 
-## Biodiversity
+## Biodiversity concepts
 
 **What is biodiversity?**
 
@@ -118,7 +117,7 @@ Sustainable Ecology and Economic Development (SEED)
 [McElderry et al. (2024) (preprint)](https://doi.org/10.32942/X2689N)
 :::
 
-## Biodiversity
+## Biodiversity concepts
 
 **How to measure biodiversity?**
 
@@ -130,7 +129,7 @@ Sustainable Ecology and Economic Development (SEED)
 [Besson et al. (2022)](https://doi.org/10.1111/ele.14123)
 :::
 
-## Biodiversity
+## Biodiversity concepts
 
 **How to measure biodiversity?**
 
@@ -143,13 +142,13 @@ Sustainable Ecology and Economic Development (SEED)
 [Besson et al. (2022)](https://doi.org/10.1111/ele.14123)
 :::
 
-# Why do we want so much to measure biodiversity???
+# Why do we want so much to measure biodiversity?
 
-## Biodiversity
+## Biodiversity concepts
 
 **Carbon credit**
 
-- Allow private companies to **trade carbon emissions**
+- Allow private companies to trade **carbon emissions**
 - Measured in **tonnes of carbon dioxide equivalent** (tCO2e)
 
 <center>
@@ -160,11 +159,11 @@ Sustainable Ecology and Economic Development (SEED)
 [Mariana Sarmiento and Simon Morgon on Mongabay](https://news.mongabay.com/2023/02/biodiversity-credits-an-opportunity-to-create-a-new-crediting-framework-commentary/)
 :::
 
-## Biodiversity
+## Biodiversity concepts
 
 **Biodiversity credit**
 
-- Allow private companies to **finance activities** (forest conservation or restoration) for **positive biodiversity gains**
+- Allow private companies to finance **activities** (e.g. forest conservation or restoration) for **positive biodiversity gains**
 
 <center>
 <img src="img/biodiversity_credit.png" style="width:45%"/>
@@ -174,7 +173,7 @@ Sustainable Ecology and Economic Development (SEED)
 [LIFE Institute](https://lifeinstituteglobal.org/creditos-life-de-biodiversidade/)
 :::
 
-## Biodiversity
+## Biodiversity concepts
 
 **Carbon credit vs Biodiversity credit**
 
@@ -186,7 +185,9 @@ Sustainable Ecology and Economic Development (SEED)
 [Jemma Penelope on Linkedin](https://www.linkedin.com/posts/jemmapenelopemisjp_biodiversitycredits-biodiversity-carbonmarkets-activity-7128086521299009537-hX3P?utm_source=share&utm_medium=member_desktop)
 :::
 
-## Biodiversity 
+# There is a small problem: we do not know biodiversity...
+
+## Biodiversity concepts
 
 **Seven biodiversity shortfalls**
 
@@ -217,9 +218,9 @@ Sustainable Ecology and Economic Development (SEED)
 [Hortal et al. (2015)](https://doi.org/10.1146/annurev-ecolsys-112414-054400)
 :::
 
-## Biodiversity
+## Biodiversity concepts
 
-**Let's select two or three biodiversity shortfalls**
+**Let's select one biodiversity shortfall to explore**
 
 ::: columns
 ::: {.column width="55%"}
@@ -233,11 +234,11 @@ Sustainable Ecology and Economic Development (SEED)
 <br>
 
 ::: {style="font-size: 70%;"}
-- [**Species taxonomy (Linnean)**]{.underline}
+- Species taxonomy (Linnean)
 - [**Species distribution (Wallacean)**]{.underline}
 - Species abundance (Prestonian)
 - Species evolutionary patterns (Darwinian)
-- [**Species abiotic tolerances (Hutchinsonian)**]{.underline}
+- Species abiotic tolerances (Hutchinsonian)
 - Species traits (Raunkiæran) 
 - Species biotic interactions (Eltonian)
 :::
@@ -263,7 +264,7 @@ Sustainable Ecology and Economic Development (SEED)
 - Field collections (field sampling)
 - Literature (articles, data papers, ...)
 - Citizen science (e-Bird, iNaturalist, ...)
-- Scientific collections and museums (National Museum, Royal Botanic Gardens - Kew)
+- Scientific collections and museums (National Museum of Brazil, Royal Botanic Gardens - Kew, ...)
 - Databases (GBIF, speciesLink, VertNet, ...)
 
 ## Species occurrences
@@ -318,6 +319,28 @@ Sustainable Ecology and Economic Development (SEED)
 
 ## Species occurrences
 
+**spocc**
+
+::: {style="font-size: 70%;"}
+- **Global Biodiversity Information Facility (GBIF) (`rgbif`)**: Earth’s biodiversity
+- **iNaturalist (`inat`)**: citizen science data on species observations
+- **VertNet (`rvertnet`)**: vertebrate records of institutions and museums
+- **eBird (`rebird`)**: citizen science data on bird abundance and distribution and checklist
+- **iDigBio (`ridigbio`)**: biological and paleobiological specimens
+- **Ocean Biogeographic Information System (OBIS) (`obis`)**: marine species data sets from all of the world’s oceans
+- **Atlas of Living Australia (ALA)(`ala`)**: information about species in Australia
+:::
+
+![](img/sdm_occ_spocc.png){.absolute width=200 height=230 right=-100 top=470}
+
+:::footer
+[spocc](https://docs.ropensci.org/spocc/)
+:::
+
+# There is another huge problem: sampling bias...
+
+## Species occurrences
+
 **Sampling bias - Brazil**
 
 ::: {style="font-size: 70%;"}
@@ -340,11 +363,11 @@ Sustainable Ecology and Economic Development (SEED)
 ::: {style="font-size: 70%;"}
 - 742 million occurrences of 374,900 species
 - Representing 6.74% of the sampled globe
+- At least of 80% of records were within 2.5 km of roads
 :::
 
-<center>
-<img src="img/sdm_occ_vies_mundo02.jpg" style="width:70%"/>
-</center>
+![](img/sdm_occ_vies_mundo01.jpg){.absolute width=650 height=300 right=500 top=350}
+![](img/sdm_occ_vies_mundo02.png){.absolute width=650 height=300 right=-200 top=350}
 
 :::footer
 [Hughes et al. (2021)](https://doi.org/10.1111/ecog.05926)
@@ -394,28 +417,56 @@ Sustainable Ecology and Economic Development (SEED)
 [Zizka et al. (2020)](https://doi.org/10.1111/ecog.05102)
 :::
 
+# How to analyze this data spatially?
+
 ## Spatial analysis 
 
 **Spatial units - Grids**
+
+- Geographic area in **regular cells**, forming a **grid**
+- Each cell is a **spatial unit** that contain values
+
+![](img/spatial_analysis_grids.png){.absolute width=580 height=350 right=-50 top=320}
+
+:::footer
+[Mason & Schröder-Fürstenberg (2024)](https://ihr.iho.int/articles/exploring-the-possibility-of-adding-dggs-support-to-the-s-100-universal-hydrographic-data-model/)
+:::
 
 ## Spatial analysis 
 
 **Spatial units - Hexagons**
 
+- Geographic area in regular **hexagons**
+- Better for uniformity and connectivity, reduces **edge effects**
+
+![](img/spatial_analysis_hex.png){.absolute width=580 height=350 right=-50 top=320}
+
+:::footer
+[Mason & Schröder-Fürstenberg (2024)](https://ihr.iho.int/articles/exploring-the-possibility-of-adding-dggs-support-to-the-s-100-universal-hydrographic-data-model/)
+:::
+
 ## Spatial analysis 
 
 **Convex hull**
 
+- Smallest convex region that **contains all the occurrences**
+
+![](img/convex_hull.png){.absolute width=700 height=250 right=-150 top=350}
+
 ## Spatial analysis 
 
-**Point density (kernel maps)**
+**Point density (kernel or heat maps)**
+
+## Spatial analysis 
+
+**Point density (kernel or heat maps)**
 
 ## Spatial analysis 
 
 **Species Distribution Modeling (SDMs)**
 
 <center>
-<img src="img/sdm_guisan_general.png" style="width:80%"/>
+<img src="img/sdm_guisan_general.png" style="width:75%"/>
 </center>
 
 :::footer
@@ -429,7 +480,7 @@ Sustainable Ecology and Economic Development (SEED)
 - Generalized Linear Models (GLM) - binomial
 
 <center>
-<img src="img/sdm_metodos_glm.png" style="width:60%"/>
+<img src="img/sdm_metodos_glm.png" style="width:55%"/>
 </center>
 
 :::footer
@@ -454,31 +505,159 @@ Sustainable Ecology and Economic Development (SEED)
 - [ShinyBIOMOD](https://gitlab.com/IanOndo/shinybiomod)
 :::
 
-![](img/sdm_sdm_pkg.png){.absolute width=420 height=550 right=100 top=120}
+![](img/sdm_sdm_pkg.png){.absolute width=420 height=550 right=70 top=120}
 
 :::footer
 [R packages](https://github.com/helixcn/sdm_r_packages)
 :::
 
-## Landscape ecology
+## Application: Seleção Natural Platform
 
-**Habitat/non-habitat**
+**Aim**
 
-## Landscape ecology
+- Prioritizes vegetation fragments that are **most relevant** for biodiversity conservation
+- Axes of action:
 
-**Landscape metrics**
+::: {style="font-size: 70%;"}
+1. Search for new populations
+1. Monitoring population dynamics
+1. Creation of protected areas
+1. Places for reintroduction of species
+:::
+
+![](img/sn01.png){.absolute width=600 height=300 right=-100 top=350}
+
+## Application: Seleção Natural Platform
+
+**Methods**
+
+::: {style="font-size: 70%;"}
+- SDMs to predict the **potential distribution** of endangered animal species
+- Fragment **prioritization** based on species composition and landscape metrics
+:::
+
+![](img/sn02_01.png){.absolute width=400 height=400 right=600 top=300}
+![](img/sn02_02.jpeg){.absolute width=400 height=400 right=100 top=300}
 
 
-## Application: SN Platform
+## Application: Seleção Natural Platform
 
+**Workflow**
+
+::::: columns
+::: {.column width="45%"}
+
+::: {style="font-size: 70%;"}
+- Client registration (user)
+- Upload of one or more property boundaries (.kml) (user)
+- Species composition and fragment ranking (automatic)
+- Fragment selection (user)
+- Conservation action plan (automatic)
+:::
+:::
+
+::: {.column width="55%"}
+<center>
+<img src="img/sn03_01.png" style="width:100%"/>
+<img src="img/sn03_02.png" style="width:100%"/>
+</center>
+:::
+:::
+
+## Application: Seleção Natural Platform
+
+**Platform**
+
+<br>
+<center>
+<img src="img/sn04_01.png" style="width:100%"/>
+</center>
+
+## Application: Seleção Natural Platform
+
+**Platform**
+
+<br>
+<center>
+<img src="img/sn04_02.png" style="width:100%"/>
+</center>
+
+## Application: Seleção Natural Platform
+
+**Platform**
+
+<br>
+<center>
+<img src="img/sn04_03.png" style="width:100%"/>
+</center>
+
+## Application: Seleção Natural Platform
+
+**Platform**
+
+<br>
+<center>
+<img src="img/sn04_04.png" style="width:100%"/>
+</center>
+
+# Questions?
+
+# Practical
+
+## R Programming Language
+
+![](img/rstudio.png){.absolute width=900 height=500 right=150 top=150}
+![](img/r_logo.svg){.absolute width=250 height=150 right=-100 top=100}
+
+## R Programming Language
+
+**10 main concepts in R**
+
+<br><br>
+
+::::: columns
+::: {.column width="50%"}
+1. Console
+2. Script
+3. Operators
+4. Objects
+5. Functions
+:::
+
+::: {.column width="50%"}
+6. Packages
+7. Help
+8. Environment
+9. Directory
+10. Citations
+:::
+:::::
+
+## *Chrysocyon brachyurus*
+
+::: columns
+::: {.column width="50%"}
+<br>
+
+- English common name: Maned Wolf
+- Portuguese common name: Lobo-guará
+- The largest canid in South America, with reddish fur
+- It lives in open and semi-open habitats
+:::
+
+::: {.column width="50%"}
+<center>
+<img src="img/lobo01.jpg" style="width:75%"/>
+<img src="img/lobo02.jpg" style="width:75%"/>
+</center>
+:::
+:::
 
 # Material
 
 ## Articles {.smaller}
 
 <br>
-
-- [Giannini, T. C. et al. (2012). Desafios atuais da modelagem preditiva de distribuição de espécies. Rodriguésia, 63(3), 733–749.](https://doi.org/10.1590/S2175-78602012000300017)
 
 - [Araújo, M. B. et al. (2019). Standards for distribution models in biodiversity assessments. Science Advances, 5(1), eaat4858.](https://doi.org/10.1126/sciadv.aat4858)
 
@@ -487,6 +666,10 @@ Sustainable Ecology and Economic Development (SEED)
 - [Sillero, N., & Barbosa, A. M. (2021). Common mistakes in ecological niche models. International Journal of Geographical Information Science, 35(2), 213–226.](https://doi.org/10.1080/13658816.2020.1798968)
 
 - [Sillero, N. et al. (2021). Want to model a species niche? A step-by-step guideline on correlative ecological niche modelling. Ecological Modelling, 456, 109671.](https://doi.org/10.1016/j.ecolmodel.2021.109671)
+
+- [Hesselbarth, M. et al. (2021). Open-source tools in R for landscape ecology. Current Landscape Ecology Reports, 6(3), 97-111](https://doi.org/10.1007/s40823-021-00067-y)
+
+- [Sillero, N. et al. (2023). A curated list of R packages for ecological niche modelling. Ecological Modelling, 476, 110242](https://doi.org/10.1016/j.ecolmodel.2022.110242)
 
 ## Books {.smaller}
 
@@ -502,15 +685,25 @@ Sustainable Ecology and Economic Development (SEED)
 
 - [Fletcher, R., & Fortin, M.-J. (2018). Spatial Ecology and Conservation Modeling: Applications with R. Springer International Publishing.](https://doi.org/10.1007/978-3-030-01989-1)
 
+## GitHub 
+
+<center>
+<img src="img/github_logo.png" style="width:60%"/>
+</center>
+
+:::footer
+[workshop-patterns-biodiversity-data](https://github.com/mauriciovancine/workshop-patterns-biodiversity-data)
+:::
+
 ## Muito obrigado!
 
 ::: columns
 ::: {.column width="50%"}
-Acknowledgements:
+**Acknowledgements**:
 
 - Mathias Pires
 - Miltinho
-- Flavia Pinto
+- FlaPinto
 - Matheus Lima-Ribeiro
 - João Giovanelli
 
@@ -527,12 +720,12 @@ Contact:
 [mauriciovancine.github.io](https://mauriciovancine.github.io)
 
 <center>
-<img src="img/gif_frogs.gif" style="width:80%"/>
+<img src="img/gif_frogs.gif" style="width:75%"/>
 </center>
 
 :::
 :::
 
 :::footer
-Slides por [Maurício Vancine](https://mauriciovancine.github.io/), feitos com [Quarto](https://quarto.org/). Código disponível no [GitHub](https://github.com/mauriciovancine/workshop-intro-r/blob/master/01_slides/slides.qmd).
+Slides by [Maurício Vancine](https://mauriciovancine.github.io/), made with [Quarto](https://quarto.org/). Code available at [GitHub](https://github.com/mauriciovancine/workshop-patterns-biodiversity-data).
 :::

@@ -372,26 +372,23 @@
 <li>Biodiversity concepts</li>
 <li>Species occurrences</li>
 <li>Spatial analysis</li>
-<li>Landscape ecology</li>
-<li>Application: SN Platform</li>
+<li>Application: Seleção Natural Platform</li>
 </ol>
 </div>
 <div id="tabset-1-2">
 <ol type="1">
 <li>Install R and RStudio</li>
 <li>Install packages</li>
-<li>Computer tests</li>
+<li>Computer testing</li>
 <li>R minimal explaining (maybe)</li>
 </ol>
 </div>
 <div id="tabset-1-3">
 <ol type="1">
 <li>R minimal explaining</li>
-<li>R for spatial data</li>
 <li>Occurrences download</li>
 <li>Occurrences cleaning</li>
 <li>Spatial analysis</li>
-<li>Landscape metrics</li>
 </ol>
 </div>
 </div>
@@ -399,16 +396,18 @@
 </section>
 <section class="slide level2">
 <h2>Objectives</h2>
+<div>
 <ol type="1">
-<li>How <strong>spatial data and analysis</strong> can contribute to <strong>knowledge of biodiversity</strong></li>
-<li>Basics of tools for <strong>downloading and cleaning</strong> occurrence data</li>
-<li>Basics of tools for <strong>spatial analysis</strong>:
+<li class="fragment">Contribution of <strong>spatial data and analysis</strong> to <strong>biodiversity knowledge</strong></li>
+<li class="fragment">Basics of tools for <strong>downloading and cleaning</strong> species occurrence data</li>
+<li class="fragment">Basics of tools for <strong>spatial analysis</strong>:
 <ul>
-<li>summarizing data to spatial units (grids, hexagons, convex hull)</li>
-<li>point density (kernel maps)</li>
-<li>species distribution modeling (very basic)</li>
+<li class="fragment">spatial units (grids, hexagons, convex hull)</li>
+<li class="fragment">point density (kernel maps)</li>
+<li class="fragment">species distribution modeling (very basic)</li>
 </ul></li>
 </ol>
+</div>
 </section>
 <section class="slide level2">
 <h2>IMPORTANT!!!</h2>
@@ -429,7 +428,7 @@
 </center>
 </section>
 <section class="slide level2">
-<h2>Biodiversity</h2>
+<h2>Biodiversity concepts</h2>
 <p><strong>What is biodiversity?</strong></p>
 <p>Sustainable Ecology and Economic Development (SEED)</p>
 <center>
@@ -440,7 +439,7 @@
 </div>
 </section>
 <section class="slide level2">
-<h2>Biodiversity</h2>
+<h2>Biodiversity concepts</h2>
 <p><strong>How to measure biodiversity?</strong></p>
 <center>
 <img src="img/measuring_biodiversity01.jpg" style="width:70%">
@@ -450,7 +449,7 @@
 </div>
 </section>
 <section class="slide level2">
-<h2>Biodiversity</h2>
+<h2>Biodiversity concepts</h2>
 <p><strong>How to measure biodiversity?</strong></p>
 <br>
 <center>
@@ -462,14 +461,14 @@
 </section>
 <section>
 <section class="title-slide slide level1 center">
-<h1>Why do we want so much to measure biodiversity???</h1>
+<h1>Why do we want so much to measure biodiversity?</h1>
 
 </section>
 <section class="slide level2">
-<h2>Biodiversity</h2>
+<h2>Biodiversity concepts</h2>
 <p><strong>Carbon credit</strong></p>
 <ul>
-<li>Allow private companies to <strong>trade carbon emissions</strong></li>
+<li>Allow private companies to trade <strong>carbon emissions</strong></li>
 <li>Measured in <strong>tonnes of carbon dioxide equivalent</strong> (tCO2e)</li>
 </ul>
 <center>
@@ -480,10 +479,10 @@
 </div>
 </section>
 <section class="slide level2">
-<h2>Biodiversity</h2>
+<h2>Biodiversity concepts</h2>
 <p><strong>Biodiversity credit</strong></p>
 <ul>
-<li>Allow private companies to <strong>finance activities</strong> (forest conservation or restoration) for <strong>positive biodiversity gains</strong></li>
+<li>Allow private companies to finance <strong>activities</strong> (e.g.&nbsp;forest conservation or restoration) for <strong>positive biodiversity gains</strong></li>
 </ul>
 <center>
 <img src="img/biodiversity_credit.png" style="width:45%">
@@ -493,7 +492,7 @@
 </div>
 </section>
 <section class="slide level2">
-<h2>Biodiversity</h2>
+<h2>Biodiversity concepts</h2>
 <p><strong>Carbon credit vs Biodiversity credit</strong></p>
 <center>
 <img src="img/carbon_biodiversity_credit.png" style="width:100%">
@@ -501,9 +500,14 @@
 <div class="footer">
 <p><a href="https://www.linkedin.com/posts/jemmapenelopemisjp_biodiversitycredits-biodiversity-carbonmarkets-activity-7128086521299009537-hX3P?utm_source=share&amp;utm_medium=member_desktop">Jemma Penelope on Linkedin</a></p>
 </div>
+</section></section>
+<section>
+<section class="title-slide slide level1 center">
+<h1>There is a small problem: we do not know biodiversity…</h1>
+
 </section>
 <section class="slide level2">
-<h2>Biodiversity</h2>
+<h2>Biodiversity concepts</h2>
 <p><strong>Seven biodiversity shortfalls</strong></p>
 <div class="columns">
 <div class="column" style="width:55%;">
@@ -531,8 +535,8 @@
 </div>
 </section>
 <section class="slide level2">
-<h2>Biodiversity</h2>
-<p><strong>Let’s select two or three biodiversity shortfalls</strong></p>
+<h2>Biodiversity concepts</h2>
+<p><strong>Let’s select one biodiversity shortfall to explore</strong></p>
 <div class="columns">
 <div class="column" style="width:55%;">
 <br>
@@ -543,11 +547,11 @@
 <p><br></p>
 <div style="font-size: 70%;">
 <ul>
-<li><u><strong>Species taxonomy (Linnean)</strong></u></li>
+<li>Species taxonomy (Linnean)</li>
 <li><u><strong>Species distribution (Wallacean)</strong></u></li>
 <li>Species abundance (Prestonian)</li>
 <li>Species evolutionary patterns (Darwinian)</li>
-<li><u><strong>Species abiotic tolerances (Hutchinsonian)</strong></u></li>
+<li>Species abiotic tolerances (Hutchinsonian)</li>
 <li>Species traits (Raunkiæran)</li>
 <li>Species biotic interactions (Eltonian)</li>
 </ul>
@@ -572,7 +576,7 @@
 <li>Field collections (field sampling)</li>
 <li>Literature (articles, data papers, …)</li>
 <li>Citizen science (e-Bird, iNaturalist, …)</li>
-<li>Scientific collections and museums (National Museum, Royal Botanic Gardens - Kew)</li>
+<li>Scientific collections and museums (National Museum of Brazil, Royal Botanic Gardens - Kew, …)</li>
 <li>Databases (GBIF, speciesLink, VertNet, …)</li>
 </ul>
 </section>
@@ -622,6 +626,30 @@
 </section>
 <section class="slide level2">
 <h2>Species occurrences</h2>
+<p><strong>spocc</strong></p>
+<div style="font-size: 70%;">
+<ul>
+<li><strong>Global Biodiversity Information Facility (GBIF) (<code>rgbif</code>)</strong>: Earth’s biodiversity</li>
+<li><strong>iNaturalist (<code>inat</code>)</strong>: citizen science data on species observations</li>
+<li><strong>VertNet (<code>rvertnet</code>)</strong>: vertebrate records of institutions and museums</li>
+<li><strong>eBird (<code>rebird</code>)</strong>: citizen science data on bird abundance and distribution and checklist</li>
+<li><strong>iDigBio (<code>ridigbio</code>)</strong>: biological and paleobiological specimens</li>
+<li><strong>Ocean Biogeographic Information System (OBIS) (<code>obis</code>)</strong>: marine species data sets from all of the world’s oceans</li>
+<li><strong>Atlas of Living Australia (ALA)(<code>ala</code>)</strong>: information about species in Australia</li>
+</ul>
+</div>
+<p><img data-src="img/sdm_occ_spocc.png" class="absolute" style="top: 470px; right: -100px; width: 200px; height: 230px; "></p>
+<div class="footer">
+<p><a href="https://docs.ropensci.org/spocc/">spocc</a></p>
+</div>
+</section></section>
+<section>
+<section class="title-slide slide level1 center">
+<h1>There is another huge problem: sampling bias…</h1>
+
+</section>
+<section class="slide level2">
+<h2>Species occurrences</h2>
 <p><strong>Sampling bias - Brazil</strong></p>
 <div style="font-size: 70%;">
 <ul>
@@ -642,11 +670,10 @@
 <ul>
 <li>742 million occurrences of 374,900 species</li>
 <li>Representing 6.74% of the sampled globe</li>
+<li>At least of 80% of records were within 2.5 km of roads</li>
 </ul>
 </div>
-<center>
-<img src="img/sdm_occ_vies_mundo02.jpg" style="width:70%">
-</center>
+<p><img data-src="img/sdm_occ_vies_mundo01.jpg" class="absolute" style="top: 350px; right: 500px; width: 650px; height: 300px; "> <img data-src="img/sdm_occ_vies_mundo02.png" class="absolute" style="top: 350px; right: -200px; width: 650px; height: 300px; "></p>
 <div class="footer">
 <p><a href="https://doi.org/10.1111/ecog.05926">Hughes et al.&nbsp;(2021)</a></p>
 </div>
@@ -693,28 +720,57 @@
 <div class="footer">
 <p><a href="https://doi.org/10.1111/ecog.05102">Zizka et al.&nbsp;(2020)</a></p>
 </div>
+</section></section>
+<section>
+<section class="title-slide slide level1 center">
+<h1>How to analyze this data spatially?</h1>
+
 </section>
 <section class="slide level2">
 <h2>Spatial analysis</h2>
 <p><strong>Spatial units - Grids</strong></p>
+<ul>
+<li>Geographic area in <strong>regular cells</strong>, forming a <strong>grid</strong></li>
+<li>Each cell is a <strong>spatial unit</strong> that contain values</li>
+</ul>
+<p><img data-src="img/spatial_analysis_grids.png" class="absolute" style="top: 320px; right: -50px; width: 580px; height: 350px; "></p>
+<div class="footer">
+<p><a href="https://ihr.iho.int/articles/exploring-the-possibility-of-adding-dggs-support-to-the-s-100-universal-hydrographic-data-model/">Mason &amp; Schröder-Fürstenberg (2024)</a></p>
+</div>
 </section>
 <section class="slide level2">
 <h2>Spatial analysis</h2>
 <p><strong>Spatial units - Hexagons</strong></p>
+<ul>
+<li>Geographic area in regular <strong>hexagons</strong></li>
+<li>Better for uniformity and connectivity, reduces <strong>edge effects</strong></li>
+</ul>
+<p><img data-src="img/spatial_analysis_hex.png" class="absolute" style="top: 320px; right: -50px; width: 580px; height: 350px; "></p>
+<div class="footer">
+<p><a href="https://ihr.iho.int/articles/exploring-the-possibility-of-adding-dggs-support-to-the-s-100-universal-hydrographic-data-model/">Mason &amp; Schröder-Fürstenberg (2024)</a></p>
+</div>
 </section>
 <section class="slide level2">
 <h2>Spatial analysis</h2>
 <p><strong>Convex hull</strong></p>
+<ul>
+<li>Smallest convex region that <strong>contains all the occurrences</strong></li>
+</ul>
+<p><img data-src="img/convex_hull.png" class="absolute" style="top: 350px; right: -150px; width: 700px; height: 250px; "></p>
 </section>
 <section class="slide level2">
 <h2>Spatial analysis</h2>
-<p><strong>Point density (kernel maps)</strong></p>
+<p><strong>Point density (kernel or heat maps)</strong></p>
+</section>
+<section class="slide level2">
+<h2>Spatial analysis</h2>
+<p><strong>Point density (kernel or heat maps)</strong></p>
 </section>
 <section class="slide level2">
 <h2>Spatial analysis</h2>
 <p><strong>Species Distribution Modeling (SDMs)</strong></p>
 <center>
-<img src="img/sdm_guisan_general.png" style="width:80%">
+<img src="img/sdm_guisan_general.png" style="width:75%">
 </center>
 <div class="footer">
 <p><a href="https://www.cambridge.org/br/academic/subjects/life-sciences/ecology-and-conservation/habitat-suitability-and-distribution-models-applications-r">Guisan et al.&nbsp;(2017)</a></p>
@@ -727,7 +783,7 @@
 <li>Generalized Linear Models (GLM) - binomial</li>
 </ul>
 <center>
-<img src="img/sdm_metodos_glm.png" style="width:60%">
+<img src="img/sdm_metodos_glm.png" style="width:55%">
 </center>
 <div class="footer">
 <p><a href="https://linkinghub.elsevier.com/retrieve/pii/S0304380002002041">Guisan et al.&nbsp;(2002)</a></p>
@@ -751,21 +807,147 @@
 <li><a href="https://gitlab.com/IanOndo/shinybiomod">ShinyBIOMOD</a></li>
 </ul>
 </div>
-<p><img data-src="img/sdm_sdm_pkg.png" class="absolute" style="top: 120px; right: 100px; width: 420px; height: 550px; "></p>
+<p><img data-src="img/sdm_sdm_pkg.png" class="absolute" style="top: 120px; right: 70px; width: 420px; height: 550px; "></p>
 <div class="footer">
 <p><a href="https://github.com/helixcn/sdm_r_packages">R packages</a></p>
 </div>
 </section>
 <section class="slide level2">
-<h2>Landscape ecology</h2>
-<p><strong>Habitat/non-habitat</strong></p>
+<h2>Application: Seleção Natural Platform</h2>
+<p><strong>Aim</strong></p>
+<ul>
+<li>Prioritizes vegetation fragments that are <strong>most relevant</strong> for biodiversity conservation</li>
+<li>Axes of action:</li>
+</ul>
+<div style="font-size: 70%;">
+<ol type="1">
+<li>Search for new populations</li>
+<li>Monitoring population dynamics</li>
+<li>Creation of protected areas</li>
+<li>Places for reintroduction of species</li>
+</ol>
+</div>
+<p><img data-src="img/sn01.png" class="absolute" style="top: 350px; right: -100px; width: 600px; height: 300px; "></p>
 </section>
 <section class="slide level2">
-<h2>Landscape ecology</h2>
-<p><strong>Landscape metrics</strong></p>
+<h2>Application: Seleção Natural Platform</h2>
+<p><strong>Methods</strong></p>
+<div style="font-size: 70%;">
+<ul>
+<li>SDMs to predict the <strong>potential distribution</strong> of endangered animal species</li>
+<li>Fragment <strong>prioritization</strong> based on species composition and landscape metrics</li>
+</ul>
+</div>
+<p><img data-src="img/sn02_01.png" class="absolute" style="top: 300px; right: 600px; width: 400px; height: 400px; "> <img data-src="img/sn02_02.jpeg" class="absolute" style="top: 300px; right: 100px; width: 400px; height: 400px; "></p>
 </section>
 <section class="slide level2">
-<h2>Application: SN Platform</h2>
+<h2>Application: Seleção Natural Platform</h2>
+<p><strong>Workflow</strong></p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div style="font-size: 70%;">
+<ul>
+<li>Client registration (user)</li>
+<li>Upload of one or more property boundaries (.kml) (user)</li>
+<li>Species composition and fragment ranking (automatic)</li>
+<li>Fragment selection (user)</li>
+<li>Conservation action plan (automatic)</li>
+</ul>
+</div>
+</div><div class="column" style="width:55%;">
+<center>
+<img src="img/sn03_01.png" style="width:100%"> <img src="img/sn03_02.png" style="width:100%">
+</center>
+</div>
+</div>
+</section>
+<section class="slide level2">
+<h2>Application: Seleção Natural Platform</h2>
+<p><strong>Platform</strong></p>
+<br>
+<center>
+<img src="img/sn04_01.png" style="width:100%">
+</center>
+</section>
+<section class="slide level2">
+<h2>Application: Seleção Natural Platform</h2>
+<p><strong>Platform</strong></p>
+<br>
+<center>
+<img src="img/sn04_02.png" style="width:100%">
+</center>
+</section>
+<section class="slide level2">
+<h2>Application: Seleção Natural Platform</h2>
+<p><strong>Platform</strong></p>
+<br>
+<center>
+<img src="img/sn04_03.png" style="width:100%">
+</center>
+</section>
+<section class="slide level2">
+<h2>Application: Seleção Natural Platform</h2>
+<p><strong>Platform</strong></p>
+<br>
+<center>
+<img src="img/sn04_04.png" style="width:100%">
+</center>
+</section></section>
+<section class="title-slide slide level1 center">
+<h1>Questions?</h1>
+
+</section>
+
+<section>
+<section class="title-slide slide level1 center">
+<h1>Practical</h1>
+
+</section>
+<section class="slide level2">
+<h2>R Programming Language</h2>
+<p><img data-src="img/rstudio.png" class="absolute" style="top: 150px; right: 150px; width: 900px; height: 500px; "> <img data-src="img/r_logo.svg" class="absolute" style="top: 100px; right: -100px; width: 250px; height: 150px; "></p>
+</section>
+<section class="slide level2">
+<h2>R Programming Language</h2>
+<p><strong>10 main concepts in R</strong></p>
+<p><br><br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ol type="1">
+<li>Console</li>
+<li>Script</li>
+<li>Operators</li>
+<li>Objects</li>
+<li>Functions</li>
+</ol>
+</div><div class="column" style="width:50%;">
+<ol start="6" type="1">
+<li>Packages</li>
+<li>Help</li>
+<li>Environment</li>
+<li>Directory</li>
+<li>Citations</li>
+</ol>
+</div>
+</div>
+</section>
+<section class="slide level2">
+<h2><em>Chrysocyon brachyurus</em></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><br></p>
+<ul>
+<li>English common name: Maned Wolf</li>
+<li>Portuguese common name: Lobo-guará</li>
+<li>The largest canid in South America, with reddish fur</li>
+<li>It lives in open and semi-open habitats</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<center>
+<img src="img/lobo01.jpg" style="width:75%"> <img src="img/lobo02.jpg" style="width:75%">
+</center>
+</div>
+</div>
 </section></section>
 <section>
 <section class="title-slide slide level1 center">
@@ -776,11 +958,12 @@
 <h2>Articles</h2>
 <p><br></p>
 <ul>
-<li><p><a href="https://doi.org/10.1590/S2175-78602012000300017">Giannini, T. C. et al.&nbsp;(2012). Desafios atuais da modelagem preditiva de distribuição de espécies. Rodriguésia, 63(3), 733–749.</a></p></li>
 <li><p><a href="https://doi.org/10.1126/sciadv.aat4858">Araújo, M. B. et al.&nbsp;(2019). Standards for distribution models in biodiversity assessments. Science Advances, 5(1), eaat4858.</a></p></li>
 <li><p><a href="https://doi.org/10.1111/ecog.04960">Zurell, D. et al.&nbsp;(2020). A standard protocol for reporting species distribution models. Ecography, 43(9), 1261–1277.</a></p></li>
 <li><p><a href="https://doi.org/10.1080/13658816.2020.1798968">Sillero, N., &amp; Barbosa, A. M. (2021). Common mistakes in ecological niche models. International Journal of Geographical Information Science, 35(2), 213–226.</a></p></li>
 <li><p><a href="https://doi.org/10.1016/j.ecolmodel.2021.109671">Sillero, N. et al.&nbsp;(2021). Want to model a species niche? A step-by-step guideline on correlative ecological niche modelling. Ecological Modelling, 456, 109671.</a></p></li>
+<li><p><a href="https://doi.org/10.1007/s40823-021-00067-y">Hesselbarth, M. et al.&nbsp;(2021). Open-source tools in R for landscape ecology. Current Landscape Ecology Reports, 6(3), 97-111</a></p></li>
+<li><p><a href="https://doi.org/10.1016/j.ecolmodel.2022.110242">Sillero, N. et al.&nbsp;(2023). A curated list of R packages for ecological niche modelling. Ecological Modelling, 476, 110242</a></p></li>
 </ul>
 </section>
 <section class="slide level2 smaller">
@@ -795,14 +978,23 @@
 </ul>
 </section>
 <section class="slide level2">
+<h2>GitHub</h2>
+<center>
+<img src="img/github_logo.png" style="width:60%">
+</center>
+<div class="footer">
+<p><a href="https://github.com/mauriciovancine/workshop-patterns-biodiversity-data">workshop-patterns-biodiversity-data</a></p>
+</div>
+</section>
+<section class="slide level2">
 <h2>Muito obrigado!</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p>Acknowledgements:</p>
+<p><strong>Acknowledgements</strong>:</p>
 <ul>
 <li>Mathias Pires</li>
 <li>Miltinho</li>
-<li>Flavia Pinto</li>
+<li>FlaPinto</li>
 <li>Matheus Lima-Ribeiro</li>
 <li>João Giovanelli</li>
 </ul>
@@ -813,12 +1005,12 @@
 <p>Contact:</p>
 <p><a href="mailto:mauricio.vancine@gmail.com">mauricio.vancine@gmail.com</a> <a href="https://mauriciovancine.github.io">mauriciovancine.github.io</a></p>
 <center>
-<img src="img/gif_frogs.gif" style="width:80%">
+<img src="img/gif_frogs.gif" style="width:75%">
 </center>
 </div>
 </div>
 <div class="footer">
-<p>Slides por <a href="https://mauriciovancine.github.io/">Maurício Vancine</a>, feitos com <a href="https://quarto.org/">Quarto</a>. Código disponível no <a href="https://github.com/mauriciovancine/workshop-intro-r/blob/master/01_slides/slides.qmd">GitHub</a>.</p>
+<p>Slides by <a href="https://mauriciovancine.github.io/">Maurício Vancine</a>, made with <a href="https://quarto.org/">Quarto</a>. Code available at <a href="https://github.com/mauriciovancine/workshop-patterns-biodiversity-data">GitHub</a>.</p>
 </div>
 <div class="quarto-auto-generated-content">
 <p><img src="https://espca.ib.unicamp.br/wp-content/uploads/2023/12/cropped-SPTRANS-gravura-parte-2-180x180.png" class="slide-logo"></p>
