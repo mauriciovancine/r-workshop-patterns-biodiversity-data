@@ -487,20 +487,20 @@ Sustainable Ecology and Economic Development (SEED)
 
 **Point density (kernel maps)**
 
-- 1. kernel function | 2. bandwidth | 3. resolution 
+1. Kernel functions
 
-![](img/kernel03.png){.absolute width=55% right=600 top=270}
-![](img/kernel04.png){.absolute width=70% right=-150 top=270}
+![](img/kernel03.png){.absolute width=60% right=450 top=270}
+![](img/kernel_functions.svg){.absolute width=50% right=-100 top=265}
 
 :::footer
-[EPI 563 - Spatial Epidemiology](https://mkram01.github.io/EPI563-SpatialEPI/index.html), [Hart & Zandbergen (2014)](http://dx.doi.org/10.1108/PIJPSM-04-2013-0039)
+[EPI 563 - Spatial Epidemiology](https://mkram01.github.io/EPI563-SpatialEPI/index.html)
 :::
 
 ## Spatial analysis 
 
 **Point density (kernel maps)**
 
-- Result
+2. Bandwidth
 
 <center>
 <img src="img/kernel05.jpg" style="width:100%"/>
@@ -508,6 +508,20 @@ Sustainable Ecology and Economic Development (SEED)
 
 :::footer
 [EPI 563 - Spatial Epidemiology](https://mkram01.github.io/EPI563-SpatialEPI/index.html)
+:::
+
+## Spatial analysis 
+
+**Point density (kernel maps)**
+
+Kernel density estimation (KDE)
+
+<center>
+<img src="img/kernel04.png" style="width:100%"/>
+</center>
+
+:::footer
+[Hart & Zandbergen (2014)](http://dx.doi.org/10.1108/PIJPSM-04-2013-0039)
 :::
 
 ## Spatial analysis 
