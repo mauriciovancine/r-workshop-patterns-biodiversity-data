@@ -66,7 +66,6 @@ tm_shape(sp_state) +
     tm_dots() +
     tm_grid(lines = FALSE, labels.rot = c(0, 90))
 
-
 # projection -------------------------------------------------------------
 
 # projection
@@ -210,6 +209,32 @@ map_hex
 
 # export
 tmap::tmap_save(map_hex, "02_results/03_spatial_analysis/map_hex.png", 
+                width = 25, height = 20, units = "cm", dpi = 300)
+
+# convex hull -----------------------------------------------------------
+
+# create
+convex_hull <- occ_v_sp_proj %>% 
+    sf::st_union() %>% 
+    sf::st_convex_hull() %>% 
+    sf::st_as_sf()
+convex_hull
+
+# map
+map_convex_hull <- tm_shape(sp_state_proj) +
+    tm_polygons(col = "black", lwd = 2) +
+    tm_shape(convex_hull, bbox = sp_state_proj) +
+    tm_fill(col = "red", alpha = ) +
+    tm_borders(col = "red", lwd = 3) +
+    tm_shape(occ_v_sp_proj) +
+    tm_bubbles(fill = "black", size = .5) +
+    tm_grid(lines = FALSE, labels.rot = c(0, 90)) +
+    tm_compass(size = 3, position = c("right", "top")) +
+    tm_scalebar(text.size = .8)
+map_convex_hull
+
+# export
+tmap::tmap_save(map_convex_hull, "02_results/03_spatial_analysis/map_convex_hull.png", 
                 width = 25, height = 20, units = "cm", dpi = 300)
 
 # kernel ------------------------------------------------------------------

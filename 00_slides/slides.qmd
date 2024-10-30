@@ -535,7 +535,7 @@ Kernel density estimation (KDE)
 [Guisan et al. (2017)](https://www.cambridge.org/br/academic/subjects/life-sciences/ecology-and-conservation/habitat-suitability-and-distribution-models-applications-r)
 :::
 
-## Spatial analysis 
+## Spatial analysis
 
 **Species Distribution Modeling (SDMs)**
 
@@ -546,6 +546,20 @@ Kernel density estimation (KDE)
 
 :::footer
 [Guisan et al. (2002)](https://linkinghub.elsevier.com/retrieve/pii/S0304380002002041)
+:::
+
+## Spatial analysis
+
+**Species Distribution Modeling (SDMs)**
+
+- Suitability map | Potential distribution
+
+<center>
+<img src="img/sdm.png" style="width:55%"/>
+</center>
+
+:::footer
+[Amaral et al. (2023)](https://doi.org/10.3897/neotropical.18.e101390)
 :::
 
 ## Spatial analysis 
