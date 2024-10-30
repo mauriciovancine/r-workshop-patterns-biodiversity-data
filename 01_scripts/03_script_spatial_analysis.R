@@ -23,7 +23,6 @@ sf::sf_use_s2(FALSE)
 occ_cleaned <- readr::read_csv("02_results/02_occurrences_cleaned/occ_cleaned.csv")
 occ_cleaned
 
-
 # grids -------------------------------------------------------------------
 
 
