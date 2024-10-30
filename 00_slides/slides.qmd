@@ -762,7 +762,7 @@ Kernel density estimation (KDE)
 </center>
 
 :::footer
-[workshop-patterns-biodiversity-data](https://github.com/mauriciovancine/workshop-patterns-biodiversity-data)
+[workshop-spatial-patterns-biodiversity-data](https://github.com/mauriciovancine/workshop-spatial-patterns-biodiversity-data)
 :::
 
 # Readings
@@ -861,5 +861,5 @@ Contact:
 :::
 
 :::footer
-Slides by [Maurício Vancine](https://mauriciovancine.github.io/), made with [Quarto](https://quarto.org/). Code available at [GitHub](https://github.com/mauriciovancine/workshop-patterns-biodiversity-data).
+Slides by [Maurício Vancine](https://mauriciovancine.github.io/), made with [Quarto](https://quarto.org/). Code available at [GitHub](https://github.com/mauriciovancine/workshop-spatial-patterns-biodiversity-data).
 :::

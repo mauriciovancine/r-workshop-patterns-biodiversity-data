@@ -8,7 +8,7 @@
 
 # packages
 library(tidyverse)
-library(rnaturalearth)
+library(geobr)
 library(sf)
 library(terra)
 library(SpatialKDE)
@@ -19,8 +19,8 @@ library(marginaleffects)
 library(tmap)
 
 # options
-tmap_options(check.and.fix = TRUE)
 sf::sf_use_s2(FALSE)
+tmap_options(check.and.fix = TRUE)
 
 # import ----------------------------------------------------------------
 
@@ -56,6 +56,7 @@ tm_shape(sp_state) +
     tm_dots() +
     tm_grid(lines = FALSE, labels.rot = c(0, 90))
 
+# spatial filter ----------------------------------------------------------
 occ_v_sp <- occ_v[sp_state,]
 occ_v_sp
 
@@ -65,24 +66,15 @@ tm_shape(sp_state) +
     tm_dots() +
     tm_grid(lines = FALSE, labels.rot = c(0, 90))
 
-# projected
-occ_v_sp_proj <- sf::st_transform(occ_v_sp, crs = 5880)
+
+# projection -------------------------------------------------------------
+
+# projection
+occ_v_sp_proj <- sf::st_transform(occ_v_sp, crs = 5880) # SIRGAS2000/Brazil Polyconic - https://epsg.io/5880
 occ_v_sp_proj
 
 sp_state_proj <- sf::st_transform(sp_state, crs = 5880)
 sp_state_proj
-
-tm_shape(sp_state_proj) +
-    tm_polygons() +
-    tm_shape(occ_v_sp_proj) +
-    tm_dots() +
-    tm_grid(lines = FALSE, labels.rot = c(0, 90))
-
-# spatial filter ----------------------------------------------------------
-
-# filter
-occ_v_sp_proj <- occ_v_sp_proj[sp_state_proj, ]
-occ_v_sp_proj
 
 tm_shape(sp_state_proj) +
     tm_polygons() +
@@ -113,9 +105,9 @@ tm_shape(sp_state_proj, bbox = grid_sel) +
     tm_polygons() +
     tm_shape(grid_sel) +
     tm_borders() +
-    tm_grid(lines = FALSE, labels.rot = c(0, 90)) +
+    tm_grid(lines = FALSE, labels.rot = c(0, 90))
     
-    tm_shape(sp_state_proj, bbox = grid_sel) +
+tm_shape(sp_state_proj, bbox = grid_sel) +
     tm_polygons() +
     tm_shape(grid_sel) +
     tm_borders() +
@@ -239,8 +231,10 @@ kde <- SpatialKDE::kde(
     terra::crop(sp_state_proj, mask = TRUE)
 kde
 
-plot(kde)
+tm_shape(kde) +
+    tm_raster(col.legend = tm_legend_hide())
 
+# map
 map_kernel <- tm_shape(kde, bbox = hex_sel) +
     tm_raster(col = "layer",
               col.scale = tm_scale_continuous(values = "-spectral"),
@@ -268,14 +262,14 @@ names(var) <- c(paste0("bio0", 1:9), paste0("bio", 10:19))
 var
 
 tm_shape(var[[1]]) +
-    tm_raster()
+    tm_raster(col.legend = tm_legend_hide())
 
 # adjust
 var_sp <- terra::crop(var, sp_state, mask = TRUE)
 var_sp
 
 tm_shape(var_sp[[1]]) +
-    tm_raster()
+    tm_raster(col.legend = tm_legend_hide())
 
 # correlation
 var_sp_vif <- usdm::vifstep(var_sp, th = 2)
@@ -285,7 +279,7 @@ var_sp_sel <- usdm::exclude(var_sp, var_sp_vif)
 var_sp_sel
 
 tm_shape(var_sp_sel) +
-    tm_raster()
+    tm_raster(col.legend = tm_legend_hide())
 
 # pseudo-absence
 pseud <- terra::spatSample(terra::vect(sp_state), nrow(occ_v))
@@ -299,31 +293,31 @@ tm_shape(sp_state) +
     tm_dots()
 
 # prepare data
-data <- dismo::prepareData(x = var_sp_sel,
+sdm_data <- dismo::prepareData(x = var_sp_sel,
                            p = occ_v_sp[, 4:5],
                            b = as.data.frame(geom(pseud)[, 3:4]))
-head(data)
+head(sdm_data)
 
 # fit model
-glm_model <- glm(pb ~ bio05 + bio07 + bio18 + bio19, data = data[, -2], family = binomial)
-glm_model
-summary(glm_model)
+sdm_glm_model <- glm(pb ~ bio05 + bio07 + bio18 + bio19, data = sdm_data[, -2], family = binomial)
+sdm_glm_model
+summary(sdm_glm_model)
 
 # plot models
-marginaleffects::plot_predictions(glm_model, condition = "bio05") + theme_classic() # Max Temperature of Warmest Month 
-marginaleffects::plot_predictions(glm_model, condition = "bio07") + theme_classic() # Temperature Annual Range (BIO5-BIO6)
-marginaleffects::plot_predictions(glm_model, condition = "bio18") + theme_classic() # Precipitation of Warmest Quarter
-marginaleffects::plot_predictions(glm_model, condition = "bio19") + theme_classic() # Precipitation of Coldest Quarter
+marginaleffects::plot_predictions(sdm_glm_model, condition = "bio05") + theme_classic() # Max Temperature of Warmest Month 
+marginaleffects::plot_predictions(sdm_glm_model, condition = "bio07") + theme_classic() # Temperature Annual Range (BIO5-BIO6)
+marginaleffects::plot_predictions(sdm_glm_model, condition = "bio18") + theme_classic() # Precipitation of Warmest Quarter
+marginaleffects::plot_predictions(sdm_glm_model, condition = "bio19") + theme_classic() # Precipitation of Coldest Quarter
 
 # predict
-pred <- terra::predict(var_sp_sel, glm_model, type = "response")
-pred
+sdm_pred <- terra::predict(var_sp_sel, sdm_glm_model, type = "response")
+sdm_pred
 
 # threshold
-pred_thr <- pred >= 0.1
+sdm_pred_thr <- sdm_pred >= 0.1
 
 # maps
-map_sdm <- tm_shape(pred, bbox = hex_sel) +
+map_sdm <- tm_shape(sdm_pred, bbox = hex_sel) +
     tm_raster(col = "lyr1",
               col.scale = tm_scale_continuous(values = "-spectral"),
               col.legend = tm_legend(title = "Suitability", 
@@ -338,7 +332,7 @@ map_sdm <- tm_shape(pred, bbox = hex_sel) +
     tm_scalebar(text.size = .8)
 map_sdm
 
-map_sdm_thr <- tm_shape(thr, bbox = hex_sel) +
+map_sdm_thr <- tm_shape(sdm_pred_thr, bbox = hex_sel) +
     tm_raster(col = "lyr1",
               col.scale = tm_scale_categorical(values = c("gray", "darkred")),
               col.legend = tm_legend(title = "Suitability", 

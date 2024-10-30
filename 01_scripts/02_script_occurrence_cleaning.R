@@ -10,15 +10,14 @@
 library(tidyverse)
 library(lubridate)
 library(CoordinateCleaner)
-library(rnaturalearth)
 library(spData)
 library(sf)
 library(terra)
 library(tmap)
 
 # options
-tmap_options(check.and.fix = TRUE)
 sf::sf_use_s2(FALSE)
+tmap_options(check.and.fix = TRUE)
 
 # import ----------------------------------------------------------------
 
@@ -42,9 +41,18 @@ occ_filter_temporal
 
 # precision
 occ_filter_temporal_precision <- occ_filter_temporal %>% 
-    dplyr::mutate(precision_filter = ifelse(longitude %>% as.character() %>% stringr::str_split_fixed(., pattern = "[.]", n = 2) %>% .[, 2] %>% stringr::str_length() >= 3 &
-                                                latitude %>% as.character() %>% stringr::str_split_fixed(., pattern = "[.]", n = 2) %>% .[, 2] %>% stringr::str_length() >= 3, 
-                                            TRUE, FALSE))
+    dplyr::mutate(precision_filter = ifelse(
+        longitude %>% 
+            as.character() %>% 
+            stringr::str_split_fixed(., pattern = "[.]", n = 2) %>% 
+            .[, 2] %>% 
+            stringr::str_length() >= 3 &
+            latitude %>%
+            as.character() %>% 
+            stringr::str_split_fixed(., pattern = "[.]", n = 2) %>% 
+            .[, 2] %>% 
+            stringr::str_length() >= 3, 
+        TRUE, FALSE))
 occ_filter_temporal_precision
 
 # bias filter -------------------------------------------------------------
@@ -61,7 +69,7 @@ occ_filter_temporal_precision_bias <- CoordinateCleaner::clean_coordinates(
               "equal", # equal coordinates
               "gbif", # radius around GBIF headquarters
               "institutions", # radius around biodiversity institutions
-              # "outliers", # remove outliers
+              "outliers", # remove geographic outliers
               "seas", # in the sea
               "urban", # within urban area
               "validity", # outside reference coordinate system
@@ -87,9 +95,7 @@ occ_filter_temporal_precision_bias <- CoordinateCleaner::clean_coordinates(
     seas_scale = 110,
     urban_ref = NULL,
     value = "spatialvalid") %>% 
-    tibble::as_tibble() %>% 
-    dplyr::mutate(.cen = case_when(longitude == -52.8731 & latitude == -10.8339 ~ FALSE, .default = .cen),
-                  .summary = case_when(longitude == -52.8731 & latitude == -10.8339 ~ FALSE, .default = .summary))
+    tibble::as_tibble()
 occ_filter_temporal_precision_bias
 
 # filter ------------------------------------------------------------------
