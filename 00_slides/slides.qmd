@@ -5,7 +5,6 @@ Co-designing Biodiversity Assessments"
 author: "[Maurício Vancine](https://mauriciovancine.github.io/)"
 date: "10/30/2024"
 date-format: long
-license: "Licence: [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR)"
 format: 
   revealjs:
     theme: [custom.scss]
@@ -48,7 +47,7 @@ lang: en
 ## Content
 
 ::: panel-tabset
-## Theorical (1h)
+## Theoretical (1h)
 
 1. Biodiversity concepts
 1. Species occurrences
@@ -60,11 +59,11 @@ lang: en
 1. Install R and RStudio
 1. Install packages
 1. Computer testing
-1. R minimal explaining (maybe)
+1. Basic R explanation (maybe)
 
 ## Practical (1.5h)
 
-1. R minimal explaining
+1. Basic R explanation
 1. Species occurrences
 1. Spatial analysis
 :::
@@ -75,8 +74,8 @@ lang: en
 1. Contribution of **spatial data and analysis** to **biodiversity knowledge**
 
 ::: {.incremental}
-1. Basic tools for **downloading** and **cleaning** species occurrence data
-1. Basic tools for **spatial analysis**: 
+2. Basic tools for **downloading** and **cleaning** species occurrence data
+3. Basic tools for **spatial analysis**: 
     - Spatial units (grids, hexagons, convex hull)
     - Point density (kernel maps)
     - Species Distribution Modeling (very basic)
@@ -149,7 +148,7 @@ Sustainable Ecology and Economic Development (SEED)
 
 **Carbon credit**
 
-- Allow private companies to trade **carbon emissions**
+- Allows private companies to trade **carbon emissions**
 - Measured in **tonnes of carbon dioxide equivalent** (tCO2e)
 
 <center>
@@ -157,14 +156,14 @@ Sustainable Ecology and Economic Development (SEED)
 </center>
 
 :::footer
-[Mariana Sarmiento and Simon Morgon on Mongabay](https://news.mongabay.com/2023/02/biodiversity-credits-an-opportunity-to-create-a-new-crediting-framework-commentary/)
+[Mariana Sarmiento and Simon Morgan on Mongabay](https://news.mongabay.com/2023/02/biodiversity-credits-an-opportunity-to-create-a-new-crediting-framework-commentary/)
 :::
 
 ## Biodiversity concepts
 
 **Biodiversity credit**
 
-- Allow private companies to finance **activities** (e.g. forest conservation or restoration) for **positive biodiversity gains**
+- Allows private companies to finance **activities** (e.g. forest conservation or restoration) for **positive biodiversity gains**
 
 <center>
 <img src="img/biodiversity_credit.png" style="width:45%"/>
@@ -221,7 +220,7 @@ Sustainable Ecology and Economic Development (SEED)
 
 ## Biodiversity concepts
 
-**Let's select one biodiversity shortfall to explore**
+**Let's select a biodiversity shortfall to explore**
 
 ::: columns
 ::: {.column width="55%"}
@@ -260,7 +259,7 @@ Sustainable Ecology and Economic Development (SEED)
 
 ## Species occurrences
 
-**Fonts**
+**Sources**
 
 - Field collections (field sampling)
 - Literature (articles, data papers, ...)
@@ -325,7 +324,7 @@ Sustainable Ecology and Economic Development (SEED)
 ::: {style="font-size: 70%;"}
 - **Global Biodiversity Information Facility (GBIF) (`rgbif`)**: Earth’s biodiversity
 - **iNaturalist (`inat`)**: citizen science data on species observations
-- **VertNet (`rvertnet`)**: vertebrate records of institutions and museums
+- **VertNet (`rvertnet`)**: vertebrate records from institutions and museums
 - **eBird (`rebird`)**: citizen science data on bird abundance and distribution and checklist
 - **iDigBio (`ridigbio`)**: biological and paleobiological specimens
 - **Ocean Biogeographic Information System (OBIS) (`obis`)**: marine species data sets from all of the world’s oceans
@@ -364,7 +363,7 @@ Sustainable Ecology and Economic Development (SEED)
 ::: {style="font-size: 70%;"}
 - 742 million occurrences of 374,900 species
 - Representing 6.74% of the sampled globe
-- At least of 80% of records were within 2.5 km of roads
+- At least 80% of records were within 2.5 km of roads
 :::
 
 ![](img/sdm_occ_vies_mundo01.jpg){.absolute width=650 height=300 right=500 top=350}
@@ -379,7 +378,7 @@ Sustainable Ecology and Economic Development (SEED)
 **CoordinateCleaner**
 
 - Automated flagging of common **spatial and temporal errors** in species occurrences
-- Errors:
+- Errors include:
 
 ::: {style="font-size: 70%;"}
 - Country and province centroids
@@ -401,8 +400,8 @@ Sustainable Ecology and Economic Development (SEED)
 
 **sampbias**
 
-- Statistical method to evaluate and visualize **geographic sampling biases**
-- Bias:
+- A statistical method to evaluate and visualize **geographic sampling biases**
+- Biases include:
 
 ::: {style="font-size: 80%;"}
 - Cities
@@ -438,7 +437,7 @@ Sustainable Ecology and Economic Development (SEED)
 **Spatial units - Grids**
 
 - Geographic area in **regular cells**, forming a **grid**
-- Each cell is a **spatial unit** that contain values
+- Each cell is a **spatial unit** that contains values
 
 ![](img/fig-vetor-quad-1.png){.absolute width=50% right=550 top=300}
 ![](img/spatial_analysis_grids.png){.absolute width=580 height=350 right=-50 top=300}
@@ -594,9 +593,9 @@ Kernel density estimation (KDE)
 - Conservation actions:
 
 ::: {style="font-size: 70%;"}
-1. Search for new populations
+1. Searching for new populations
 1. Monitoring population dynamics
-1. Creation of protected areas
+1. Creating of protected areas
 1. Places for reintroduction of species
 :::
 
@@ -711,7 +710,7 @@ Kernel density estimation (KDE)
 
 ## R Programming Language
 
-**10 main concepts in R**
+**Top 10 main concepts in R**
 
 <br><br>
 
@@ -806,7 +805,7 @@ Kernel density estimation (KDE)
 <br>
 
 <center>
-<img src="img/aer.jpeg" href="https://analises-ecologicas.com/" style="width:85%"/>
+<img src="img/aer.jpeg" style="width:85%"/>
 </center>
 :::
 
