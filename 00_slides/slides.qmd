@@ -561,6 +561,19 @@ Sustainable Ecology and Economic Development (SEED)
 
 ## Application: Seleção Natural Platform
 
+**Minimum Viable Product**
+
+<center>
+<img src="img/mvp.png" style="width:90%"/>
+</center>
+
+:::footer
+[prodpad](https://www.prodpad.com/glossary/minimum-viable-product-mvp/)
+:::
+
+
+## Application: Seleção Natural Platform
+
 **Aim**
 
 - Prioritizes vegetation fragments that are **most relevant** for biodiversity conservation
@@ -708,10 +721,10 @@ Sustainable Ecology and Economic Development (SEED)
 
 ## *Chrysocyon brachyurus*
 
+**Coolest mammal in the world**
+
 ::: columns
 ::: {.column width="50%"}
-<br>
-
 - English common name: Maned Wolf
 - Portuguese common name: Lobo-guará
 - The largest canid in South America, with reddish fur

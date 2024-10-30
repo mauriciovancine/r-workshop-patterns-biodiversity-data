@@ -33,8 +33,6 @@ nrow(occ)
 # date filter -------------------------------------------------------------
 
 # temporal
-
-# fauna
 occ_filter_temporal <- occ %>% 
     dplyr::mutate(temporal_filter = ifelse(date >= 1970 & date <= lubridate::year(lubridate::today()), TRUE, FALSE)) %>% 
     tidyr::replace_na(list(temporal_filter = FALSE))
@@ -42,7 +40,7 @@ occ_filter_temporal
 
 # precision ---------------------------------------------------------------
 
-# fauna
+# precision
 occ_filter_temporal_precision <- occ_filter_temporal %>% 
     dplyr::mutate(precision_filter = ifelse(longitude %>% as.character() %>% stringr::str_split_fixed(., pattern = "[.]", n = 2) %>% .[, 2] %>% stringr::str_length() >= 3 &
                                                 latitude %>% as.character() %>% stringr::str_split_fixed(., pattern = "[.]", n = 2) %>% .[, 2] %>% stringr::str_length() >= 3, 
@@ -96,7 +94,7 @@ occ_filter_temporal_precision_bias
 
 # filter ------------------------------------------------------------------
 
-# fauna
+# filter
 occ_cleaned <- occ_filter_temporal_precision_bias %>% 
     dplyr::filter(temporal_filter == TRUE,
                   precision_filter == TRUE,
