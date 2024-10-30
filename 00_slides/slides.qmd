@@ -23,6 +23,13 @@ editor: source
 lang: en
 ---
 
+## Access to slides
+
+<br>
+<center>
+![](img/qr_code.png)
+</center>
+
 ## Maurício Vancine 
 
 ::: columns
