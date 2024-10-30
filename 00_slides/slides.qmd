@@ -52,7 +52,7 @@ lang: en
 
 1. Biodiversity concepts
 1. Species occurrences
-1. Spatial analysis 
+1. Spatial analysis
 1. Application: Seleção Natural Platform
 
 ## Pre-Practical (0.5h)
@@ -65,17 +65,23 @@ lang: en
 ## Practical (1.5h)
 
 1. R minimal explaining
-1. Occurrences download
-1. Occurrences cleaning
-1. Spatial analysis
+2. Species occurrences<br>
+    2.1. Download<br>
+    2.2. Cleaning
+1. Spatial analysis<br>
+    2.1. Spatial units<br>
+    2.2. Point density<br>
+    2.3. Species Distribution Modeling
 :::
 
 ## Objectives
 
-::: {.incremental}
+
 1. Contribution of **spatial data and analysis** to **biodiversity knowledge**
-1. Basics of tools for **downloading and cleaning** species occurrence data
-1. Basics of tools for **spatial analysis**: 
+
+::: {.incremental}
+1. Basic tools for **downloading** and **cleaning** species occurrence data
+1. Basic tools for **spatial analysis**: 
     - spatial units (grids, hexagons, convex hull)
     - point density (kernel maps)
     - species distribution modeling (very basic)
@@ -185,7 +191,7 @@ Sustainable Ecology and Economic Development (SEED)
 [Jemma Penelope on Linkedin](https://www.linkedin.com/posts/jemmapenelopemisjp_biodiversitycredits-biodiversity-carbonmarkets-activity-7128086521299009537-hX3P?utm_source=share&utm_medium=member_desktop)
 :::
 
-# There is a small problem: we do not know biodiversity...
+# There is a small problem: we do not know all the biodiversity…...
 
 ## Biodiversity concepts
 
@@ -414,10 +420,23 @@ Sustainable Ecology and Economic Development (SEED)
 ![](img/occ_bias_map.jpg){.absolute width=400 height=450 right=-100 top=250}
 
 :::footer
-[Zizka et al. (2020)](https://doi.org/10.1111/ecog.05102)
+[Zizka et al. (2020)](https://doi.org/10.1007/s41651-020-00066-3)
 :::
 
 # How to analyze this data spatially?
+
+## Spatial analysis 
+
+**Spatial units**
+
+:::footer
+[Li & Stefanakis (2020)](https://doi.org/10.1111/ecog.05102)
+:::
+
+<center>
+<img src="img/spatial_units01.png" style="width:100%"/>
+<img src="img/spatial_units02.png" style="width:70%"/>
+</center>
 
 ## Spatial analysis 
 
@@ -426,7 +445,8 @@ Sustainable Ecology and Economic Development (SEED)
 - Geographic area in **regular cells**, forming a **grid**
 - Each cell is a **spatial unit** that contain values
 
-![](img/spatial_analysis_grids.png){.absolute width=580 height=350 right=-50 top=320}
+![](img/fig-vetor-quad-1.png){.absolute width=50% right=550 top=300}
+![](img/spatial_analysis_grids.png){.absolute width=580 height=350 right=-50 top=300}
 
 :::footer
 [Mason & Schröder-Fürstenberg (2024)](https://ihr.iho.int/articles/exploring-the-possibility-of-adding-dggs-support-to-the-s-100-universal-hydrographic-data-model/)
@@ -439,7 +459,8 @@ Sustainable Ecology and Economic Development (SEED)
 - Geographic area in regular **hexagons**
 - Better for uniformity and connectivity, reduces **edge effects**
 
-![](img/spatial_analysis_hex.png){.absolute width=580 height=350 right=-50 top=320}
+![](img/fig-vetor-hex-1.png){.absolute width=50% right=550 top=300}
+![](img/spatial_analysis_hex.png){.absolute width=580 height=350 right=-50 top=300}
 
 :::footer
 [Mason & Schröder-Fürstenberg (2024)](https://ihr.iho.int/articles/exploring-the-possibility-of-adding-dggs-support-to-the-s-100-universal-hydrographic-data-model/)
@@ -451,15 +472,48 @@ Sustainable Ecology and Economic Development (SEED)
 
 - Smallest convex region that **contains all the occurrences**
 
+![](img/fig-vetor-convexo-1.png){.absolute width=50% right=550 top=300}
 ![](img/convex_hull.png){.absolute width=700 height=250 right=-150 top=350}
 
 ## Spatial analysis 
 
-**Point density (kernel or heat maps)**
+**Point density (kernel maps)**
+
+- Represent the **concentration** of occurrences or events in a geographic area
+
+![](img/kernel01.png){.absolute width=40% right=580 top=320}
+![](img/kernel02.png){.absolute width=55% right=-100 top=270}
+
+:::footer
+[Kernel density calculations](http://www.geography.hunter.cuny.edu/~jochen/gtech361/lectures/lecture11/concepts/Kernel%20density%20calculations.htm)
+:::
 
 ## Spatial analysis 
 
-**Point density (kernel or heat maps)**
+**Point density (kernel maps)**
+
+- 1. kernel function | 2. bandwidth | 3. resolution 
+
+![](img/kernel03.png){.absolute width=55% right=600 top=270}
+![](img/kernel04.png){.absolute width=70% right=-150 top=270}
+
+:::footer
+[EPI 563 - Spatial Epidemiology](https://mkram01.github.io/EPI563-SpatialEPI/index.html), [Hart & Zandbergen (2014)](http://dx.doi.org/10.1108/PIJPSM-04-2013-0039)
+:::
+
+## Spatial analysis 
+
+**Point density (kernel maps)**
+
+- Result
+
+<center>
+<img src="img/kernel05.jpg" style="width:100%"/>
+</center>
+
+:::footer
+[EPI 563 - Spatial Epidemiology](https://mkram01.github.io/EPI563-SpatialEPI/index.html)
+:::
 
 ## Spatial analysis 
 
@@ -479,9 +533,8 @@ Sustainable Ecology and Economic Development (SEED)
 
 - Generalized Linear Models (GLM) - binomial
 
-<center>
-<img src="img/sdm_metodos_glm.png" style="width:55%"/>
-</center>
+![](img/sdm_pseudo_background.png){.absolute width=40% right=580 top=250}
+![](img/sdm_metodos_glm.png){.absolute width=55% right=-50 top=250}
 
 :::footer
 [Guisan et al. (2002)](https://linkinghub.elsevier.com/retrieve/pii/S0304380002002041)
@@ -516,7 +569,7 @@ Sustainable Ecology and Economic Development (SEED)
 **Aim**
 
 - Prioritizes vegetation fragments that are **most relevant** for biodiversity conservation
-- Axes of action:
+- Conservation actions:
 
 ::: {style="font-size: 70%;"}
 1. Search for new populations
@@ -525,7 +578,11 @@ Sustainable Ecology and Economic Development (SEED)
 1. Places for reintroduction of species
 :::
 
-![](img/sn01.png){.absolute width=600 height=300 right=-100 top=350}
+![](img/sn01.png){.absolute width=60% right=-80 top=300}
+
+:::footer
+[Seleção Natural](https://www.selecaonatural.net/)
+:::
 
 ## Application: Seleção Natural Platform
 
@@ -533,12 +590,15 @@ Sustainable Ecology and Economic Development (SEED)
 
 ::: {style="font-size: 70%;"}
 - SDMs to predict the **potential distribution** of endangered animal species
-- Fragment **prioritization** based on species composition and landscape metrics
+- Vegetation fragment **prioritization** based on species composition and landscape metrics
 :::
 
-![](img/sn02_01.png){.absolute width=400 height=400 right=600 top=300}
-![](img/sn02_02.jpeg){.absolute width=400 height=400 right=100 top=300}
+![](img/sn02_01.png){.absolute width=400 height=400 right=600 top=270}
+![](img/sn02_02.jpeg){.absolute width=400 height=400 right=100 top=270}
 
+:::footer
+[Seleção Natural](https://www.selecaonatural.net/)
+:::
 
 ## Application: Seleção Natural Platform
 
@@ -548,11 +608,13 @@ Sustainable Ecology and Economic Development (SEED)
 ::: {.column width="45%"}
 
 ::: {style="font-size: 70%;"}
-- Client registration (user)
-- Upload of one or more property boundaries (.kml) (user)
-- Species composition and fragment ranking (automatic)
-- Fragment selection (user)
-- Conservation action plan (automatic)
+<br><br>
+
+1. Client registration (user)
+1. Upload of one or more property boundaries (.kml) (user)
+1. Species composition and fragment ranking (automatic)
+1. Fragment selection (user)
+1. Conservation action plan (automatic)
 :::
 :::
 
@@ -564,6 +626,10 @@ Sustainable Ecology and Economic Development (SEED)
 :::
 :::
 
+:::footer
+[Seleção Natural](https://www.selecaonatural.net/)
+:::
+
 ## Application: Seleção Natural Platform
 
 **Platform**
@@ -572,6 +638,10 @@ Sustainable Ecology and Economic Development (SEED)
 <center>
 <img src="img/sn04_01.png" style="width:100%"/>
 </center>
+
+:::footer
+[Seleção Natural](https://www.selecaonatural.net/)
+:::
 
 ## Application: Seleção Natural Platform
 
@@ -582,6 +652,10 @@ Sustainable Ecology and Economic Development (SEED)
 <img src="img/sn04_02.png" style="width:100%"/>
 </center>
 
+:::footer
+[Seleção Natural](https://www.selecaonatural.net/)
+:::
+
 ## Application: Seleção Natural Platform
 
 **Platform**
@@ -590,6 +664,10 @@ Sustainable Ecology and Economic Development (SEED)
 <center>
 <img src="img/sn04_03.png" style="width:100%"/>
 </center>
+
+:::footer
+[Seleção Natural](https://www.selecaonatural.net/)
+:::
 
 ## Application: Seleção Natural Platform
 
@@ -642,7 +720,7 @@ Sustainable Ecology and Economic Development (SEED)
 - English common name: Maned Wolf
 - Portuguese common name: Lobo-guará
 - The largest canid in South America, with reddish fur
-- It lives in open and semi-open habitats
+- It lives in open and semi-open habitats (Brazilian Savanna - Cerrado)
 :::
 
 ::: {.column width="50%"}
@@ -654,6 +732,18 @@ Sustainable Ecology and Economic Development (SEED)
 :::
 
 # Material
+
+## GitHub 
+
+<center>
+<img src="img/github_logo.png" style="width:60%"/>
+</center>
+
+:::footer
+[workshop-patterns-biodiversity-data](https://github.com/mauriciovancine/workshop-patterns-biodiversity-data)
+:::
+
+# Readings
 
 ## Articles {.smaller}
 
@@ -685,14 +775,36 @@ Sustainable Ecology and Economic Development (SEED)
 
 - [Fletcher, R., & Fortin, M.-J. (2018). Spatial Ecology and Conservation Modeling: Applications with R. Springer International Publishing.](https://doi.org/10.1007/978-3-030-01989-1)
 
-## GitHub 
+- [Lovelace, R., Nowosad, J., & Muenchow J. (2025). Geocomputation with R. Springer International Publishing.](https://r.geocompx.org/)
+
+## Análises Ecológicas no R (2022)
+
+::::: columns
+::: {.column width="40%"}
+<br>
 
 <center>
-<img src="img/github_logo.png" style="width:60%"/>
+<img src="img/aer.jpeg" href="https://analises-ecologicas.com/" style="width:85%"/>
 </center>
+:::
 
-:::footer
-[workshop-patterns-biodiversity-data](https://github.com/mauriciovancine/workshop-patterns-biodiversity-data)
+::: {.column width="60%"}
+-   15 chapters: R language, tidyverse, questions in ecology, univariate, multivariate and geospatial analyses
+
+-   [bookdown](https://analises-ecologicas.com/)
+
+-   [PDF](https://canal6.com.br/livreacesso/livro/analises-ecologicas-no-r/)
+
+-   [Amazon](https://www.amazon.com.br/An%C3%A1lises-ecol%C3%B3gicas-Ferdo-Rodrigues-Silva/dp/857917564X/ref=sr_1_1?keywords=9788579175640&qid=1654379366&sr=8-1)
+
+-   [Code](https://github.com/paternogbc/livro_aer)
+
+-   [YouTube](https://www.youtube.com/channel/UCLSVSCnmvf2k6OoWZCnEO4w)
+:::
+:::::
+
+::: footer
+[Da Silva et al. (2022)](https://analises-ecologicas.com/)
 :::
 
 ## Muito obrigado!
@@ -703,7 +815,7 @@ Sustainable Ecology and Economic Development (SEED)
 
 - Mathias Pires
 - Miltinho
-- FlaPinto
+- Flavia Pinto
 - Matheus Lima-Ribeiro
 - João Giovanelli
 
