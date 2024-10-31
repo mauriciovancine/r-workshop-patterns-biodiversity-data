@@ -12,7 +12,7 @@ format:
     hash-type: number
     preview-links: false
     chalkboard: true
-    logo: "https://espca.ib.unicamp.br/wp-content/uploads/2023/12/cropped-SPTRANS-gravura-parte-2-180x180.png"
+    logo: "https://espca.ib.unicamp.br/wp-content/uploads/2023/12/cropped-SPTRANS-gravura-parte-2-300x300.png"
     execute:
       echo: true
       eval: true
