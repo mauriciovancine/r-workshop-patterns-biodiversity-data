@@ -1,9 +1,8 @@
 ---
 title: "Analyzing spatial patterns in biodiversity data"
-subtitle: "<br>São Paulo School of Advanced Science (SPSAS)<br>
-Co-designing Biodiversity Assessments"
+subtitle: "<br>São Paulo School of Advanced Science (SPSAS)<br>Co-designing Biodiversity Assessments"
 author: "[Maurício Vancine](https://mauriciovancine.github.io/)"
-date: "10/30/2024"
+date: "10/31/2024"
 date-format: long
 format: 
   revealjs:
@@ -27,7 +26,7 @@ lang: en
 
 <br>
 <center>
-![](img/qr_code.png)
+![](img/qr_code_slides.png)
 </center>
 
 ## Maurício Vancine 
@@ -143,6 +142,18 @@ Sustainable Ecology and Economic Development (SEED)
 <br>
 <center>
 <img src="img/measuring_biodiversity02.jpg" style="width:100%"/>
+</center>
+
+:::footer
+[Besson et al. (2022)](https://doi.org/10.1111/ele.14123)
+:::
+
+## Biodiversity concepts
+
+**How to measure biodiversity?**
+
+<center>
+<img src="img/measuring_biodiversity01.jpg" style="width:70%"/>
 </center>
 
 :::footer
@@ -351,7 +362,7 @@ Sustainable Ecology and Economic Development (SEED)
 **Sampling bias - Brazil**
 
 ::: {style="font-size: 70%;"}
-- 1,144,629 (total) and 882,468 (valid) occurrences for 4345 species
+- >1 million (total) and 900 thousand (valid) occurrences for ~4,500 species
 - Groups: vertebrates, arthropods and angiosperms
 - All occurrences <1km from access routes (roads and rivers)
 :::
@@ -368,8 +379,8 @@ Sustainable Ecology and Economic Development (SEED)
 **Sampling bias - World**
 
 ::: {style="font-size: 70%;"}
-- 742 million occurrences of 374,900 species
-- Representing 6.74% of the sampled globe
+- 740 million occurrences of 375 thousand species
+- Representing only 6.7% of the sampled globe
 - At least 80% of records were within 2.5 km of roads
 :::
 
@@ -775,10 +786,11 @@ Kernel density estimation (KDE)
 
 # Material
 
-## GitHub 
+## Access to GitHub
 
+<br>
 <center>
-<img src="img/github_logo.png" style="width:60%"/>
+![](img/qr_code_github.png)
 </center>
 
 :::footer

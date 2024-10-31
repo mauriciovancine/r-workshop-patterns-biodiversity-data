@@ -109,6 +109,10 @@ occ_cleaned <- occ_filter_temporal_precision_bias %>%
     tibble::rowid_to_column(var = "id")
 occ_cleaned
 
+occ_cleaned
+nrow(occ)
+nrow(occ_cleaned)
+
 # maps --------------------------------------------------------------------
 
 # vector

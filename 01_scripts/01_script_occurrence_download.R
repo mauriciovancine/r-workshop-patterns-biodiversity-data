@@ -32,7 +32,7 @@ tm_shape(li) +
     tm_polygons()
 
 # species list
-species_list <- c("Chrysocyon brachyurus")
+species_list <- c("Chrysocyon brachyurus", "Ameiva ameiva")
 species_list
 
 # download fauna --------------------------------------------------------
@@ -162,7 +162,7 @@ occ_data
 # integrated --------------------------------------------------------------
 
 # import
-occ_data_fauna <- dir(path = "02_results/01_occurrences_raw/", pattern = ".csv", full.names = TRUE) %>% 
+occ_data_fauna <- dir(path = "02_results/01_occurrences_raw/", pattern = ".csv", full.names = TRUE) [2]%>% 
     purrr::map_dfr(readr::read_csv, col_types = "ccddcdc")
 occ_data_fauna
 
