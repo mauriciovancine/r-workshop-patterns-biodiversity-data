@@ -21,6 +21,9 @@ options(timeout = 3e5)
 sf::sf_use_s2(FALSE)
 tmap_options(check.and.fix = TRUE)
 
+# create directories
+dir.create(path = "02_results")
+dir.create(path = "02_results/01_occurrences_raw")
 
 # import data -------------------------------------------------------------
 
@@ -32,7 +35,7 @@ tm_shape(li) +
     tm_polygons()
 
 # species list
-species_list <- c("Chrysocyon brachyurus", "Ameiva ameiva")
+species_list <- c("Chrysocyon brachyurus")
 species_list
 
 # download fauna --------------------------------------------------------
@@ -162,7 +165,7 @@ occ_data
 # integrated --------------------------------------------------------------
 
 # import
-occ_data_fauna <- dir(path = "02_results/01_occurrences_raw/", pattern = ".csv", full.names = TRUE) [2]%>% 
+occ_data_fauna <- dir(path = "02_results/01_occurrences_raw/", pattern = ".csv", full.names = TRUE)%>% 
     purrr::map_dfr(readr::read_csv, col_types = "ccddcdc")
 occ_data_fauna
 

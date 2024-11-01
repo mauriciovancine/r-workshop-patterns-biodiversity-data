@@ -22,6 +22,9 @@ library(tmap)
 sf::sf_use_s2(FALSE)
 tmap_options(check.and.fix = TRUE)
 
+# directory
+dir.create(path = "02_results/03_spatial_analysis")
+
 # import ----------------------------------------------------------------
 
 # occ
@@ -224,8 +227,7 @@ convex_hull
 map_convex_hull <- tm_shape(sp_state_proj) +
     tm_polygons(col = "black", lwd = 2) +
     tm_shape(convex_hull, bbox = sp_state_proj) +
-    tm_fill(col = "red", alpha = ) +
-    tm_borders(col = "red", lwd = 3) +
+    tm_polygons(col = "red", fill = "darkred", fill_alpha = .3, lwd = 2) +
     tm_shape(occ_v_sp_proj) +
     tm_bubbles(fill = "black", size = .5) +
     tm_grid(lines = FALSE, labels.rot = c(0, 90)) +

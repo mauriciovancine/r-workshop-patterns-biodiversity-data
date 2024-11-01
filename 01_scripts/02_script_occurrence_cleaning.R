@@ -19,6 +19,9 @@ library(tmap)
 sf::sf_use_s2(FALSE)
 tmap_options(check.and.fix = TRUE)
 
+# directory
+dir.create(path = "02_results/02_occurrences_cleaned")
+
 # import ----------------------------------------------------------------
 
 # occurrences
@@ -110,6 +113,7 @@ occ_cleaned <- occ_filter_temporal_precision_bias %>%
 occ_cleaned
 
 occ_cleaned
+
 nrow(occ)
 nrow(occ_cleaned)
 
@@ -151,9 +155,9 @@ occ_cleaned_v
 tm_shape(li, bbox = occ_filter_temporal_precision_bias_v) +
     tm_polygons() +
     tm_shape(occ_filter_temporal_precision_bias_v) +
-    tm_bubbles(size = .4, fill = "red") +
+    tm_bubbles(size = .4, col = "red") +
     tm_shape(occ_cleaned_v) +
-    tm_bubbles(size = .4, fill = "forestgreen")
+    tm_bubbles(size = .4, col = "forestgreen")
 
 # export ------------------------------------------------------------------
 
